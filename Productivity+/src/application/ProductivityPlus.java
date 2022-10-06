@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class ProductivityPlus extends Application {
 	@Override
 	public void start(Stage stage) throws Exception{
-		Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("ProductivityPlus.fxml"));
 		
 		Scene scene = new Scene(root);
 		stage.setTitle("Productivity Plus");
