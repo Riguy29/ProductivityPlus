@@ -25,7 +25,7 @@ public class ProductivityPlusController {
 
     @FXML
     void onAboutButtonClick(ActionEvent event) {
-
+    	test.setText("This is working dumb dumb");
     }
 
 }
