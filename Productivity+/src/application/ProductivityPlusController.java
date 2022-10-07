@@ -31,12 +31,12 @@ public class ProductivityPlusController {
     	//test.setText("This is working dumb dumb");
     }
     
-    DraggableMaker draggableMaker = new DraggableMaker();
+ 
     @FXML
     void onDailyTaskListMenuButtonClick(ActionEvent event) {
     	dailyTaskMiniProgram DT = new dailyTaskMiniProgram();
     	Pane dailyTaskListPane = DT.build();
-    	draggableMaker.makeDraggable(dailyTaskListPane);
+  
     	mainWorkspace.getChildren().addAll(dailyTaskListPane);
     }
 
