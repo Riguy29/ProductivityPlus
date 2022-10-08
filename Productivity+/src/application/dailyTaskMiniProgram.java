@@ -23,12 +23,14 @@ public class dailyTaskMiniProgram extends MiniProgramBase {
 		super.makePaneDraggable();
 		super.setToDefaults();
 		
-    	super.basePane.getChildren().add(dailyTaskList);
+    	super.basePane.getChildren().add(dailyTaskList); //Add a vbox to the basePane
     	dailyTaskList.setMaxSize(width, height);
     	dailyTaskList.setAlignment(Pos.TOP_CENTER);
     	
-    	dailyTaskList.getChildren().add(new Label("Daily Task List")); //Title of the Mini Program
+    	//dailyTaskList.getChildren().add(new Label("Daily Task List")); //Title of the Mini Program
+    	dailyTaskList.getChildren().add(super.addMenu("DailyTaskList",basePane));
     	dailyTaskList.getChildren().add(addNewTaskButton); //Button that allows user to add more tasks
+    	
     	addNewTask();  	
     	
     	addNewTaskButton.setOnAction(event ->{ //When the button is clicked, adds new task
