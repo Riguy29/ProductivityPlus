@@ -1,11 +1,11 @@
-package application;
+package Modules;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-public class dailyTaskMiniProgram extends MiniProgramBase {
+public class DailyTaskModule extends ModuleBase {
 	private final double width =200 ,height = 400;
 	
 	@FXML
@@ -14,21 +14,18 @@ public class dailyTaskMiniProgram extends MiniProgramBase {
 	@FXML
 	private Button addNewTaskButton = new Button("+");
 	
-	public dailyTaskMiniProgram(){
+	public DailyTaskModule(){
 		
 		
 	}
 	@Override
 	public StackPane build() {
-		super.makePaneDraggable();
-		super.setToDefaults();
-		
-    	super.basePane.getChildren().add(dailyTaskList); //Add a vbox to the basePane
+		super.build(); //Preforms build functionality from the ModuleBase class
+		createTopMenu("Task List");
+    	getVerticalOrganizer().getChildren().add(dailyTaskList); //Add a vbox to the basePane
+    	
     	dailyTaskList.setMaxSize(width, height);
     	dailyTaskList.setAlignment(Pos.TOP_CENTER);
-    	
-    	//dailyTaskList.getChildren().add(new Label("Daily Task List")); //Title of the Mini Program
-    	dailyTaskList.getChildren().add(super.addMenu("DailyTaskList",basePane));
     	dailyTaskList.getChildren().add(addNewTaskButton); //Button that allows user to add more tasks
     	
     	addNewTask();  	

@@ -14,6 +14,7 @@ public class ProductivityPlus extends Application {
 		Scene scene = new Scene(root);
 		stage.setTitle("Productivity Plus");
 		stage.setScene(scene);
+		stage.setMaximized(true);
 		stage.show();
 	}
 	

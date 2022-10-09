@@ -1,5 +1,7 @@
-package application;
+package Modules;
 
+import application.DraggableMaker;
+import application.ProductivityPlusController;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -7,39 +9,45 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
-public abstract class MiniProgramBase extends ProductivityPlusController{
+public abstract class ModuleBase extends ProductivityPlusController{
 	
 	@FXML
 	protected StackPane basePane = new StackPane();
+	private VBox verticalOrganizer = new VBox();
 	private final BorderStroke borderStroke = new BorderStroke(Color.BLACK,BorderStrokeStyle.SOLID,null,new BorderWidths(2));
-	private final Insets defaultInsets = new Insets(10);
+	private final Insets defaultInsets = new Insets(2);
 	protected Border defaultBorder= new Border(borderStroke);
+	private Background defaultBackground = new Background(new BackgroundFill(Color.WHITE, null, defaultInsets));
 	
 
 	
 	DraggableMaker draggableMaker = new DraggableMaker();
 	
-	public  abstract StackPane build();
-	public void exit() {
+	public StackPane build() {
+		makePaneDraggable();
+		setToDefaults();
+		basePane.getChildren().add(verticalOrganizer);
+		return basePane;
 		
 	}
-	protected final void makePaneDraggable(){
+	private final void makePaneDraggable(){
 		draggableMaker.makeDraggable(basePane);
 	}
 
-	protected final void setToDefaults() {
+	private final void setToDefaults() {
 		basePane.setBorder(defaultBorder);
 		basePane.setPadding(defaultInsets);
 		basePane.setAlignment(Pos.TOP_CENTER);
+		basePane.setBackground(defaultBackground);
 		
 	}
-	protected MenuBar addMenu(String moduleTitle, StackPane parentPane) {
+	protected void createTopMenu(String moduleTitle) {
 		MenuItem minimizeModule = new MenuItem("Minimize");
 		MenuItem exitModule = new MenuItem("Exit");
 		
 		exitModule.setOnAction(event ->{ //When the exit button is clicked the node exits
-			AnchorPane mainWorkspace = (AnchorPane) basePane.getParent();
-			mainWorkspace.getChildren().remove(basePane);
+			AnchorPane mainWorkspace = (AnchorPane) basePane.getParent(); //Grabs the AnchorPane
+			mainWorkspace.getChildren().remove(basePane); //Removes module from the pane
 			
 			
 		});
@@ -51,6 +59,9 @@ public abstract class MiniProgramBase extends ProductivityPlusController{
 		
 		titleMenu.getItems().addAll(minimizeModule,exitModule);
 		
-		return menuBar;
+		verticalOrganizer.getChildren().add(menuBar);
+	}
+	public VBox getVerticalOrganizer() {
+		return verticalOrganizer;
 	}
 }
