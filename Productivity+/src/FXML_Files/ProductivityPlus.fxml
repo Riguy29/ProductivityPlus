@@ -14,8 +14,8 @@
                <items>
                   <Menu mnemonicParsing="false" text="PresetLayouts">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Work" />
-                        <MenuItem mnemonicParsing="false" text="Study" />
+                      <MenuItem mnemonicParsing="false" onAction="#setLayoutToWorkLayout" text="Work" />
+                        <MenuItem mnemonicParsing="false" onAction="#setLayoutToStudyLayout" text="Study" />
                     </items>
                   </Menu>
                </items>

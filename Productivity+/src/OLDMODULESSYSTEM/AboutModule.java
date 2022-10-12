@@ -1,5 +1,7 @@
 package OLDMODULESSYSTEM;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.StackPane;
@@ -7,6 +9,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class AboutModule extends ModuleBase{
+
+	protected AboutModule() throws IOException {
+		
+		// TODO Auto-generated constructor stub
+	}
+
 
 	private double width = 200, height = 100;
 	private Text infoText = new Text(

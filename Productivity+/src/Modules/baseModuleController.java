@@ -12,11 +12,13 @@ public class baseModuleController {
 
 	DraggableMaker draggableMaker = new DraggableMaker();
 			
+
     @FXML
     private VBox rootModuleVBox;
 
+
     @FXML
-    private Menu moduleTitle;
+    private Menu moduleFunctionsMenu;
 
     @FXML
     private MenuItem closeModuelMenuItem;
@@ -26,6 +28,13 @@ public class baseModuleController {
     void exitModule(ActionEvent event) {
 		AnchorPane mainWorkspace = (AnchorPane) rootModuleVBox.getParent(); //Grabs the AnchorPane
 		mainWorkspace.getChildren().remove(rootModuleVBox); //Removes module from the pane
+    }
+    
+    public void setTitle(String newTitle) {
+    	moduleFunctionsMenu.setText(newTitle);
+    }
+    protected void addMenuItemToMenu(MenuItem itemToadd, Menu menuToAddToo) {
+    	
     }
 }
 

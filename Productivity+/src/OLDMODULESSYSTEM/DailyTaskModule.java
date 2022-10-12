@@ -1,11 +1,13 @@
 package OLDMODULESSYSTEM;
 
+
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-public class DailyTaskModule extends ModuleBase {
+public class DailyTaskModule extends ModuleBase{
+
 	private final double width =200 ,height = 400;
 	
 	@FXML
@@ -18,10 +20,7 @@ public class DailyTaskModule extends ModuleBase {
 	private MenuItem loadTask = new MenuItem("Load Task List");
 
 	
-	public DailyTaskModule(){
-		
-		
-	}
+
 	@Override
 	public StackPane build() {
 		super.build(); //Performs build functionality from the ModuleBase class

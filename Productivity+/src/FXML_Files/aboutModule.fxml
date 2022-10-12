@@ -2,9 +2,22 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Modules.aboutModuleController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Modules.aboutModuleController">
    <children>
-      <Label text="Welcome To Productivity Plus" />
+      <Label text="Welcome To Productivity Plus">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+      <Label text="ProductivityPlus offers a wide variety of small programs, called modules that will assist you in many different settings" />
+      <Label layoutX="10.0" layoutY="40.0" text="Need to study for school and need some relaxing music, open up the Music Player Module!" />
+      <Label layoutX="94.0" layoutY="61.0" text="Need to organize a task list for work, we got you covered simply open up the Task List Module!" />
+      <Label layoutX="81.0" layoutY="82.0" text="And So Much More!" />
+      <Label layoutX="329.0" layoutY="103.0" text="To exit a module, including this one, click the menu at the top and select exit" />
+      <Label layoutX="142.0" layoutY="124.0" text="Created By:" />
+      <Label layoutX="358.0" layoutY="145.0" text="Riley Arneson - Programmer, Project Manager" />
+      <Label layoutX="206.0" layoutY="166.0" text="Avery Jensen - Programmer, UX Designer" />
+      <Label layoutX="257.0" layoutY="187.0" text="Maddie Jones - Programmer, Business Analyst" />
    </children>
 </VBox>
