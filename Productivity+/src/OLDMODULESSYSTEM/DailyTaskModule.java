@@ -1,4 +1,4 @@
-package Modules;
+package OLDMODULESSYSTEM;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -14,14 +14,21 @@ public class DailyTaskModule extends ModuleBase {
 	@FXML
 	private Button addNewTaskButton = new Button("+");
 	
+	private MenuItem saveTask = new MenuItem("Save Task List");
+	private MenuItem loadTask = new MenuItem("Load Task List");
+
+	
 	public DailyTaskModule(){
 		
 		
 	}
 	@Override
 	public StackPane build() {
-		super.build(); //Preforms build functionality from the ModuleBase class
-		createTopMenu("Task List");
+		super.build(); //Performs build functionality from the ModuleBase class
+		super.addMenuItemToTitleMenu(saveTask);
+		super.addMenuItemToTitleMenu(loadTask);
+		
+		super.setTitleMenuText("Task List");
     	getVerticalOrganizer().getChildren().add(dailyTaskList); //Add a vbox to the basePane
     	
     	dailyTaskList.setMaxSize(width, height);
@@ -53,5 +60,6 @@ public class DailyTaskModule extends ModuleBase {
     	
     	dailyTaskList.getChildren().add(dailyTask);
 	}
+
 
 }

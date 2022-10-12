@@ -1,4 +1,4 @@
-package Modules;
+package OLDMODULESSYSTEM;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -23,7 +23,7 @@ public class AboutModule extends ModuleBase{
 	
 	public StackPane build() {
 		super.build();
-		createTopMenu("Help");
+		super.setTitleMenuText("About ProductivityPlus");
 		VBox parentVbox = super.getVerticalOrganizer();
 		parentVbox.setMaxSize(width, height);
 		parentVbox.getChildren().add(infoText);

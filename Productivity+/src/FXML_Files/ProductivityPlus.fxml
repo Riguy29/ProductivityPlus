@@ -14,15 +14,15 @@
                <items>
                   <Menu mnemonicParsing="false" text="PresetLayouts">
                     <items>
-                      <MenuItem fx:id="workPresetLayout" mnemonicParsing="false" text="Work" />
-                        <MenuItem fx:id="studyPresetLayoutMenu" mnemonicParsing="false" text="Study" />
+                      <MenuItem mnemonicParsing="false" text="Work" />
+                        <MenuItem mnemonicParsing="false" text="Study" />
                     </items>
                   </Menu>
                </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Gizmos">
                <items>
-                  <MenuItem fx:id="dailyTaskListCreation" mnemonicParsing="false" onAction="#onDailyTaskListMenuButtonClick" text="DailyTaskList" />
+                  <MenuItem mnemonicParsing="false" onAction="#onDailyTaskListMenuButtonClick" text="DailyTaskList" />
                   <MenuItem mnemonicParsing="false" text="Clock" />
                   <MenuItem mnemonicParsing="false" text="Notepad" />
                </items>
