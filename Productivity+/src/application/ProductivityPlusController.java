@@ -37,9 +37,9 @@ public class ProductivityPlusController {
     @FXML
     void onDailyTaskListMenuButtonClick(ActionEvent event) throws IOException {
     	FXMLLoader moduleLoader = new FXMLLoader(getClass().getResource("../FXML_Files/taskListModule.fxml"));
-    	VBox taskListModule = moduleLoader.load();
+    	VBox miniModule = moduleLoader.load();
     	taskListController taskListCon = moduleLoader.getController();
-    	BaseModuleReturnPackage basePackage = createModule(taskListModule);
+    	BaseModuleReturnPackage basePackage = createModule(miniModule);
     	basePackage.baseController.setTitle("Task List");
     	
     	MenuItem resetCompletedTasks = new MenuItem("Reset Completed Tasks");
@@ -111,7 +111,7 @@ class BaseModuleReturnPackage{
 	
 	BaseModuleReturnPackage(VBox _baseModule,baseModuleController _baseController){
 		this.baseModule = _baseModule;
-		this.baseController = _baseController;
+		this.baseController = _baseController;		
 	}
 }
 
