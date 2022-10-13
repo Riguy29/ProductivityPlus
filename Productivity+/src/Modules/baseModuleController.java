@@ -20,7 +20,8 @@ public class baseModuleController {
     @FXML
     private Menu moduleFunctionsMenu;
 
-    @FXML
+
+	@FXML
     private MenuItem closeModuelMenuItem;
 
 
@@ -33,8 +34,14 @@ public class baseModuleController {
     public void setTitle(String newTitle) {
     	moduleFunctionsMenu.setText(newTitle);
     }
-    protected void addMenuItemToMenu(MenuItem itemToadd, Menu menuToAddToo) {
-    	
+    public void addNodeToMenu(MenuItem itemToAdd, Menu menuToAddToo) {
+    	menuToAddToo.getItems().add(itemToAdd);
     }
+    public void addNodeToMenu(Menu menuToAdd, Menu menuToAddToo) {
+    	menuToAddToo.getItems().add(menuToAdd);
+    }
+    public Menu getModuleFunctionsMenu() {
+		return moduleFunctionsMenu;
+	}
 }
 

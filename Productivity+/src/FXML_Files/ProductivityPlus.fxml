@@ -26,6 +26,7 @@
                   <MenuItem mnemonicParsing="false" text="Clock" />
                   <MenuItem mnemonicParsing="false" text="Notepad" />
                   <MenuItem mnemonicParsing="false" onAction="#onBrainBreakMenuItemClick" text="BrainBreak" />
+                  <MenuItem mnemonicParsing="false" onAction="#onMusicPlayerMenuItemClicked" text="MusicPlayer" />
                </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Program Info">

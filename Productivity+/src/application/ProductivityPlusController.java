@@ -2,10 +2,12 @@ package application;
 
 import java.io.IOException;
 
-import OLDMODULESSYSTEM.AboutModule;
+import Modules.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.*;
 
 public class ProductivityPlusController {
@@ -34,14 +36,35 @@ public class ProductivityPlusController {
  
     @FXML
     void onDailyTaskListMenuButtonClick(ActionEvent event) throws IOException {
-    	VBox taskListModule = FXMLLoader.load(getClass().getResource("../FXML_Files/taskListModule.fxml"));
-    	createModule(taskListModule);
+    	FXMLLoader moduleLoader = new FXMLLoader(getClass().getResource("../FXML_Files/taskListModule.fxml"));
+    	VBox taskListModule = moduleLoader.load();
+    	taskListController taskListCon = moduleLoader.getController();
+    	BaseModuleReturnPackage basePackage = createModule(taskListModule);
+    	basePackage.baseController.setTitle("Task List");
+    	
+    	MenuItem resetCompletedTasks = new MenuItem("Reset Completed Tasks");
+    	resetCompletedTasks.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				taskListCon.tasksCompleted =0;
+				taskListCon.updateProgressBar();
+				
+			}   		
+    	});
+    	basePackage.baseController.addNodeToMenu(resetCompletedTasks, basePackage.baseController.getModuleFunctionsMenu());
     }
 
     @FXML
     void onBrainBreakMenuItemClick(ActionEvent event) throws IOException {
     	VBox brainBreakModule = FXMLLoader.load(getClass().getResource("../FXML_Files/brainBreakModule.fxml"));
-    	createModule(brainBreakModule);
+    	BaseModuleReturnPackage basePackage = createModule(brainBreakModule);
+    	basePackage.baseController.setTitle("Brain Break");
+    }
+    @FXML
+    void onMusicPlayerMenuItemClicked(ActionEvent event) throws IOException {
+    	VBox musicPlayerModule = FXMLLoader.load(getClass().getResource("../FXML_Files/musicPlayerModule.fxml"));
+    	BaseModuleReturnPackage basePackage = createModule(musicPlayerModule);
+    	basePackage.baseController.setTitle("Music Player");
     }
 
 
@@ -58,44 +81,38 @@ public class ProductivityPlusController {
     @FXML
     void setLayoutToWorkLayout(ActionEvent event) throws IOException {
     	VBox taskListModule = FXMLLoader.load(getClass().getResource("../FXML_Files/taskListModule.fxml"));
-    	VBox module = createModule(taskListModule);
+    	BaseModuleReturnPackage basePackage = createModule(taskListModule);
+    	VBox module = basePackage.baseModule;
     	module.setLayoutX(250);
     	module.setLayoutY(250);
     	
 
     }
-    
-//    private VBox createTaskListModule() {
-//    	try {
-//    		baseModule = FXMLLoader.load(getClass().getResource("../FXML_Files/baseModule.fxml"));
-//			
-//			baseModule.getChildren().add(taskListModule);
-//			mainWorkspace.getChildren().add(baseModule);
-//			draggableMaker.makeDraggable(baseModule);
-//			
-//			
-//			
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return baseModule;
-//    }
-    private VBox createModule(VBox moduleVBox) {
-    	try {
-    		baseModule = FXMLLoader.load(getClass().getResource("../FXML_Files/baseModule.fxml"));
-			baseModule.getChildren().add(moduleVBox);
-			mainWorkspace.getChildren().add(baseModule);
-			draggableMaker.makeDraggable(baseModule);
-			
-			
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return baseModule;
+
+
+    private BaseModuleReturnPackage createModule(VBox moduleVBox) throws IOException {
+		FXMLLoader moduleLoader = new  FXMLLoader(getClass().getResource("../FXML_Files/baseModule.fxml"));
+		baseModule = moduleLoader.load();
+		baseModuleController baseController = moduleLoader.getController();
+		baseModule.getChildren().add(moduleVBox);
+		mainWorkspace.getChildren().add(baseModule);
+		draggableMaker.makeDraggable(baseModule);
+
+		return new BaseModuleReturnPackage(baseModule,baseController);
     }
+    
+
 
 
 }
+class BaseModuleReturnPackage{
+	VBox baseModule;
+	baseModuleController baseController;
+	
+	BaseModuleReturnPackage(VBox _baseModule,baseModuleController _baseController){
+		this.baseModule = _baseModule;
+		this.baseController = _baseController;
+	}
+}
+
+

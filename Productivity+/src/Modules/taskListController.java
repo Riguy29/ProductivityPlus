@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 public class taskListController extends baseModuleController{
 
 	private int taskGoalNum = 1;
-	private int tasksCompleted =0;
+	public int tasksCompleted =0;
     @FXML
     private VBox taskListVBox;
 
@@ -58,7 +58,7 @@ public class taskListController extends baseModuleController{
     	}
 
     }
-    private void updateProgressBar() {
+    public void updateProgressBar() {
     	double percentageComplete = ((double)tasksCompleted/taskGoalNum);
     	System.out.print(percentageComplete);
     	taskProgressBar.setProgress(percentageComplete);
