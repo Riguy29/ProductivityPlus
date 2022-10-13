@@ -33,21 +33,21 @@ public class ProductivityPlusController {
     
  
     @FXML
-    void onDailyTaskListMenuButtonClick(ActionEvent event) {
-    	createTaskListModule();
+    void onDailyTaskListMenuButtonClick(ActionEvent event) throws IOException {
+    	VBox taskListModule = FXMLLoader.load(getClass().getResource("../FXML_Files/taskListModule.fxml"));
+    	createModule(taskListModule);
     }
-    
+
+    @FXML
+    void onBrainBreakMenuItemClick(ActionEvent event) throws IOException {
+    	VBox brainBreakModule = FXMLLoader.load(getClass().getResource("../FXML_Files/brainBreakModule.fxml"));
+    	createModule(brainBreakModule);
+    }
 
 
     @FXML
     void onHelpButtonClick(ActionEvent event) {
 
-    }
-    
-    public void popUpAboutMenuOnStart() {
-//    	AboutModule aboutModule = new AboutModule();
-//    	Pane aboutPane = aboutModule.build();
-//    	mainWorkspace.getChildren().add(aboutPane);
     }
     
     @FXML
@@ -56,19 +56,35 @@ public class ProductivityPlusController {
     }
 
     @FXML
-    void setLayoutToWorkLayout(ActionEvent event) {
-    	VBox taskListModule = createTaskListModule();
-    	taskListModule.setLayoutX(250);
-    	taskListModule.setLayoutY(250);
+    void setLayoutToWorkLayout(ActionEvent event) throws IOException {
+    	VBox taskListModule = FXMLLoader.load(getClass().getResource("../FXML_Files/taskListModule.fxml"));
+    	VBox module = createModule(taskListModule);
+    	module.setLayoutX(250);
+    	module.setLayoutY(250);
     	
 
     }
     
-    private VBox createTaskListModule() {
+//    private VBox createTaskListModule() {
+//    	try {
+//    		baseModule = FXMLLoader.load(getClass().getResource("../FXML_Files/baseModule.fxml"));
+//			
+//			baseModule.getChildren().add(taskListModule);
+//			mainWorkspace.getChildren().add(baseModule);
+//			draggableMaker.makeDraggable(baseModule);
+//			
+//			
+//			
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return baseModule;
+//    }
+    private VBox createModule(VBox moduleVBox) {
     	try {
     		baseModule = FXMLLoader.load(getClass().getResource("../FXML_Files/baseModule.fxml"));
-			VBox taskListModule = FXMLLoader.load(getClass().getResource("../FXML_Files/taskListModule.fxml"));
-			baseModule.getChildren().add(taskListModule);
+			baseModule.getChildren().add(moduleVBox);
 			mainWorkspace.getChildren().add(baseModule);
 			draggableMaker.makeDraggable(baseModule);
 			

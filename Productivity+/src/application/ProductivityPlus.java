@@ -6,7 +6,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class ProductivityPlus extends Application {
+	
 	@Override
+	
 	public void start(Stage stage) throws Exception{
 		VBox root = FXMLLoader.load(getClass().getResource("../FXML_Files/ProductivityPlus.fxml"));
 		
