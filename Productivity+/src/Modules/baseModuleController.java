@@ -10,8 +10,6 @@ import javafx.scene.layout.VBox;
 
 public class baseModuleController {
 
-	DraggableMaker draggableMaker = new DraggableMaker();
-			
 
     @FXML
     private VBox rootModuleVBox;
@@ -31,15 +29,18 @@ public class baseModuleController {
 		mainWorkspace.getChildren().remove(rootModuleVBox); //Removes module from the pane
     }
     
-    public void setTitle(String newTitle) {
+    //Various functions that allow miniModules to change things about the base Module
+    protected void setTitle(String newTitle) {
     	moduleFunctionsMenu.setText(newTitle);
     }
-    public void addNodeToMenu(MenuItem itemToAdd, Menu menuToAddToo) {
+    protected void addNodeToMenu(MenuItem itemToAdd, Menu menuToAddToo) {
     	menuToAddToo.getItems().add(itemToAdd);
     }
-    public void addNodeToMenu(Menu menuToAdd, Menu menuToAddToo) {
+    protected void addNodeToMenu(Menu menuToAdd, Menu menuToAddToo) {
     	menuToAddToo.getItems().add(menuToAdd);
     }
+    
+    
     public Menu getModuleFunctionsMenu() {
 		return moduleFunctionsMenu;
 	}
