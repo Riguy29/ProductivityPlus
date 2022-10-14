@@ -34,7 +34,22 @@ public class taskListController extends baseModuleInitalizer{
     private TextField taskGoalTextField;
 
     
-    
+    @Override
+	public void initialize(URL arg0, ResourceBundle arg1)  {
+    	super.initialize(arg0, arg1); //Must include this when you initalize you modules
+		baseController.setTitle("Task List");	
+    	MenuItem resetCompletedTasks = new MenuItem("Reset Completed Tasks");
+    	resetCompletedTasks.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				tasksCompleted =0;
+				updateProgressBar();
+				
+			}   		
+    	});
+    	baseController.addNodeToMenu(resetCompletedTasks,baseController.getTitleMenu());
+		
+	}
     @FXML
     void createNewTaskButton(ActionEvent event)  {
     	CheckBox taskCompleteCheckBox = new CheckBox();
@@ -76,22 +91,7 @@ public class taskListController extends baseModuleInitalizer{
     }
 
 
-    @Override
-	public void initialize(URL arg0, ResourceBundle arg1)  {
-    	super.initialize(arg0, arg1); //Must include this when you initalize you modules
-		baseController.setTitle("Task List");	
-    	MenuItem resetCompletedTasks = new MenuItem("Reset Completed Tasks");
-    	resetCompletedTasks.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event) {
-				tasksCompleted =0;
-				updateProgressBar();
-				
-			}   		
-    	});
-    	baseController.addNodeToMenu(resetCompletedTasks,baseController.getModuleFunctionsMenu());
-		
-	}
+
     
 
 }

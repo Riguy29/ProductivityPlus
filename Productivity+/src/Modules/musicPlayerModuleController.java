@@ -35,9 +35,10 @@ public class musicPlayerModuleController extends baseModuleInitalizer{
 		super.initialize(arg0, arg1);
 		baseController.setTitle("Music Player");
 		
-		
+		//Loading mp3 files into the media array
 		playLists[0] = new Media(getClass().getResource("../mediaFiles/MediationPlayList.mp3").toExternalForm());
 		playLists[1] = new Media(getClass().getResource("../mediaFiles/StudyPlayList.mp3").toExternalForm());
+		
 		mediaPlayer = new MediaPlayer(playLists[playListIndex]);
 		setPlaylistTitle(titlesOfPlaylists[playListIndex]);
 		mediaPlayer.setAutoPlay(true);
@@ -92,6 +93,8 @@ public class musicPlayerModuleController extends baseModuleInitalizer{
     	System.out.print(newVolume);
     	mediaPlayer.setVolume(newVolume);
     }
+    
+    //TODO: Currently music doesnt stop when you close the module, would like to fix that.
 
 
 }

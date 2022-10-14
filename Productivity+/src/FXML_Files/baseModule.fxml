@@ -9,7 +9,7 @@
    <children>
       <MenuBar nodeOrientation="LEFT_TO_RIGHT">
         <menus>
-          <Menu fx:id="moduleFunctionsMenu" mnemonicParsing="false" text="Module Functions">
+          <Menu fx:id="titleMenu" mnemonicParsing="false" text="Module Functions">
             <items>
               <MenuItem fx:id="closeModuelMenuItem" mnemonicParsing="false" onAction="#exitModule" text="Close" />
                   <MenuItem mnemonicParsing="false" text="Minimize" />

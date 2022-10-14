@@ -26,5 +26,8 @@ public class baseModuleInitalizer implements Initializable {
 		draggableMaker.makeDraggable(baseVBox); //Making the base module draggable
 		baseController = moduleLoader.getController(); //Getting controller so that children of this class can call methods from the baseController
 	}
+	public baseModuleController getBaseController() {
+		return baseController;
+	}
 
 }
