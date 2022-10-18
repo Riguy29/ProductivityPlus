@@ -98,7 +98,7 @@ public class ProductivityPlusController implements Initializable {
 				System.err.print("FXML module could not find controller\n Make sure controller path in the FXML file is formatted like this\n Modules.NAMEOFCONTROLLERCLASS");
 			}
 			else {
-				System.out.println("Succesfully loaded " + miniModuleController.getBaseController().getTitleMenu() );
+				System.out.println("Succesfully loaded " + miniModuleController.getBaseController().getTitleMenu().getText() );
 			}			
 		}
 
@@ -123,7 +123,7 @@ public class ProductivityPlusController implements Initializable {
 	    	miniModuleController.baseVBox.relocate( (mainWorkspace.getWidth() * percentageOfScreenWidth) ,mainWorkspace.getHeight() * perctanageOfScreenHeight);  
 		} 
 		catch (IOException e) {
-			System.err.print("Java yelled at me if I didnt put this in..No clue what it does");
+			System.err.println("Java yelled at me if I didnt put this in..No clue what it does");
 		}
 		catch(IllegalStateException e) {
 			System.err.println("File could not be found, make sure file path is correct");
