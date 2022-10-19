@@ -42,9 +42,7 @@ public class brainWarmupController  extends baseModuleInitalizer{
     @FXML
     void onStartButtonClick(ActionEvent event) {
     	parentVBox.getChildren().removeAll(startButton,brainWarmupLabel);
-
     	parentVBox.getChildren().addAll(questionLabel,answerTextField,submitButton);
-    	
 
     	
     	nextQuestion();
