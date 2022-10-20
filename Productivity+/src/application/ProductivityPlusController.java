@@ -65,7 +65,7 @@ public class ProductivityPlusController implements Initializable {
     
     @FXML
     void onNotePadMenuItemClick(ActionEvent event) {
-    	String pathToFXML = "sjkvsegkjsbegjkse";
+    	String pathToFXML = "../FXML_Files/notePadModule.fxml";
     	createModule(pathToFXML);
     }
     
