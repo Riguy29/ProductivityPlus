@@ -20,9 +20,11 @@ public class ProductivityPlusController implements Initializable {
     @FXML
     private  AnchorPane mainWorkspace;
     
-    //IMPORTANT!!
-    //The module enum and the modulePath must be in the exact same order
-    //IE: index 0 of both corresponds to the about module
+	/*
+	 * IMPORTANT!! 
+	 * The module enum and the modulePath must be in the exact same
+	 * order IE: index 0 of both corresponds to the about module
+	 */
     private static enum module{
     	about,
     	tasklist,
@@ -43,6 +45,7 @@ public class ProductivityPlusController implements Initializable {
     	"../FXML_Files/calculatorModule.fxml",
     	"../FXML_Files/notePadModule.fxml"  	
     };
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) { //Runs this code block when the fxml loads
 		createModule(module.about); //Creates the about module to tell users about our app
@@ -52,14 +55,11 @@ public class ProductivityPlusController implements Initializable {
     void onAboutButtonClick(ActionEvent event) {
     	createModule(module.about);
     }
-    
- 
     @FXML
     void onDailyTaskListMenuButtonClick(ActionEvent event){
     	createModule(module.tasklist);
 
     }
-
     @FXML
     void onBrainBreakMenuItemClick(ActionEvent event) {
     	createModule(module.brainBreak);
@@ -76,13 +76,10 @@ public class ProductivityPlusController implements Initializable {
     void onCalculatorMenuClicked(ActionEvent event) {
     	createModule(module.calculator);
     }
-
-
     @FXML
     void onHelpButtonClick(ActionEvent event) {
 
-    }
-    
+    }    
     @FXML
     void onNotePadMenuItemClick(ActionEvent event) {
     	createModule(module.notepad);
