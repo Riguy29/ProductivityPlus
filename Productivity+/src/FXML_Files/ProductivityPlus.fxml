@@ -24,7 +24,7 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#onDailyTaskListMenuButtonClick" text="DailyTaskList" />
                   <MenuItem mnemonicParsing="false" text="Clock" />
-                  <MenuItem mnemonicParsing="false" text="Notepad" />
+                  <MenuItem mnemonicParsing="false" onAction="#onNotePadMenuItemClick" text="Notepad" />
                   <MenuItem mnemonicParsing="false" onAction="#onBrainBreakMenuItemClick" text="BrainBreak" />
                   <MenuItem mnemonicParsing="false" onAction="#onMusicPlayerMenuItemClicked" text="MusicPlayer" />
                   <MenuItem mnemonicParsing="false" onAction="#onBrainWarmupMenuItemClicked" text="Brain Warmup" />

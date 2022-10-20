@@ -17,7 +17,7 @@
       <Label layoutX="329.0" layoutY="103.0" text="To exit a module, including this one, click the menu at the top and select exit" />
       <Label layoutX="142.0" layoutY="124.0" text="Created By:" />
       <Label layoutX="358.0" layoutY="145.0" text="Riley Arneson - Lead Programmer, Project Manager" />
-      <Label layoutX="206.0" layoutY="166.0" text="Avery Jensen - Programmer, UX Designer" />
+      <Label layoutX="206.0" layoutY="166.0" text="Avery Diederich - Programmer, UX Designer" />
       <Label layoutX="257.0" layoutY="187.0" text="Maddie Jones - Programmer, Business Analyst" />
    </children>
 </VBox>
