@@ -56,6 +56,11 @@ public class ProductivityPlusController implements Initializable {
     	String pathToFXML = "../FXML_Files/brainWarmupModule.fxml";
     	createModule(pathToFXML);
     }
+    @FXML
+    void onCalculatorMenuClicked(ActionEvent event) {
+    	String pathToFXML = "../FXML_Files/calculatorModule.fxml";
+    	createModule(pathToFXML);
+    }
 
 
     @FXML
