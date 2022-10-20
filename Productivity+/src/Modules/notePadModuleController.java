@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Labeled;
@@ -16,11 +17,15 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+import java.sql.Timestamp;    
+import java.util.Date;  
+import java.text.SimpleDateFormat; 
+
 public class notePadModuleController extends baseModuleInitalizer{
 	
 	//creating text object
 	Text text = new Text();
-	String type = text.getText();
+	
 	
 
     @FXML
@@ -70,13 +75,14 @@ public class notePadModuleController extends baseModuleInitalizer{
     @FXML
     void italicizeText(ActionEvent event) { //italicize selected text
     	noteTextBox.setFont(Font.font( "verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
+    	
     }
 
     
 
 	@FXML
     void underlineText(ActionEvent event) { //underline selected text
-    	//noteTextBox.setUnderline(true);
+    	//.setUnderline();
     }
     
     @FXML
@@ -89,7 +95,12 @@ public class notePadModuleController extends baseModuleInitalizer{
 
 	@FXML		
     void timeStamp(ActionEvent event) { //insert current time and date-- when the note was made
-		
+		Date date = new Date();  
+	     Timestamp ts = new Timestamp(date.getTime());  
+	     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+	       System.out.println(formatter.format(ts));
+	       noteTextBox.setText(formatter.format(ts) + (noteTextBox.getText()));
+	       
 	}
 
 
