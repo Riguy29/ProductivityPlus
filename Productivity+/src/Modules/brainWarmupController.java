@@ -100,6 +100,10 @@ public class brainWarmupController  extends baseModuleInitalizer{
     	QuizAnswer.add("glass");
     	QuizQuestions.add("David’s Father Has Three Sons: Snap, Crackle, And ________?");
     	QuizAnswer.add("david");
+    	QuizQuestions.add("A girl fell off of a 20ft ladder. She wasn't hurt. How?");
+    	QuizAnswer.add("She was on the bottom step");
+    	QuizQuestions.add("There’s a one-story house where everything is yellow. The walls are yellow. The doors are yellow. All the furniture is yellow. The house has yellow beds and yellow couches. What color are the stairs?");
+    	QuizAnswer.add("There are no stairs—it’s a one-story house!");
 	}
     
     private void nextQuestion() {

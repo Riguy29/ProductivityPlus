@@ -6,12 +6,12 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -63,8 +63,7 @@ public class notePadModuleController extends baseModuleInitalizer{
 
     @FXML
     void changePadColor(ActionEvent event) { //change the background color of each note
-    	
-    	
+    	  
     }
     
     @FXML
@@ -77,20 +76,20 @@ public class notePadModuleController extends baseModuleInitalizer{
     	noteTextBox.setFont(Font.font( "verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
     	
     }
-
-    
+  
 
 	@FXML
     void underlineText(ActionEvent event) { //underline selected text
-    	//.setUnderline();
+			
     }
-    
-    @FXML
-    void boldText(ActionEvent event) { //bold selected text
-    	
+	
+	@FXML
+    void boldText(ActionEvent event) { //bold selected text				
     	noteTextBox.setFont(Font.font( "verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
     	
     }
+		
+			
 
 
 	@FXML		
