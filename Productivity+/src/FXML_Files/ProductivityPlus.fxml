@@ -28,6 +28,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#onBrainBreakMenuItemClick" text="BrainBreak" />
                   <MenuItem mnemonicParsing="false" onAction="#onMusicPlayerMenuItemClicked" text="MusicPlayer" />
                   <MenuItem mnemonicParsing="false" onAction="#onBrainWarmupMenuItemClicked" text="Brain Warmup" />
+                  <MenuItem mnemonicParsing="false" onAction="#onCalculatorMenuClicked" text="Calculator" />
                </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Program Info">

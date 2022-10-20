@@ -19,72 +19,90 @@ public class ProductivityPlusController implements Initializable {
 	DraggableMaker draggableMaker = new DraggableMaker();
     @FXML
     private  AnchorPane mainWorkspace;
-
+    
+	/*
+	 * IMPORTANT!! 
+	 * The module enum and the modulePath must be in the exact same
+	 * order IE: index 0 of both corresponds to the about module
+	 */
+    private static enum module{
+    	about,
+    	tasklist,
+    	brainBreak,
+    	musicPlayer,
+    	brainWarmup,
+    	calculator,
+    	notepad,
+    	
+    }
+    private static String[] modulePaths =
+    {
+    	"../FXML_Files/aboutModule.fxml",	
+    	"../FXML_Files/taskListModule.fxml",
+    	"../FXML_Files/brainBreakModule.fxml",
+    	"../FXML_Files/musicPlayerModule.fxml",
+    	"../FXML_Files/brainWarmupModule.fxml",
+    	"../FXML_Files/calculatorModule.fxml",
+    	"../FXML_Files/notePadModule.fxml"  	
+    };
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) { //Runs this code block when the fxml loads
-    	
-    	String pathToFXML = "../FXML_Files/aboutModule.fxml";
-		createModule(pathToFXML); //Creates the about module to tell users about our app
+		createModule(module.about); //Creates the about module to tell users about our app
 		
 	}
     @FXML
     void onAboutButtonClick(ActionEvent event) {
-    	String pathToFXML = "../FXML_Files/aboutModule.fxml";
-    	createModule(pathToFXML);
+    	createModule(module.about);
     }
-    
- 
     @FXML
     void onDailyTaskListMenuButtonClick(ActionEvent event){
-    	String pathToFXML = "../FXML_Files/taskListModule.fxml";
-    	createModule(pathToFXML);
+    	createModule(module.tasklist);
 
     }
-
     @FXML
     void onBrainBreakMenuItemClick(ActionEvent event) {
-    	String pathToFXML = "../FXML_Files/brainBreakModule.fxml"; //Tells the create module function where the minimodule FXML file is
-    	createModule(pathToFXML);
+    	createModule(module.brainBreak);
     }
     @FXML
     void onMusicPlayerMenuItemClicked(ActionEvent event){
-    	String pathToFXML = "../FXML_Files/musicPlayerModule.fxml";
-    	createModule(pathToFXML);
+    	createModule(module.musicPlayer);
     }
     @FXML
     void onBrainWarmupMenuItemClicked(ActionEvent event) {
-    	String pathToFXML = "../FXML_Files/brainWarmupModule.fxml";
-    	createModule(pathToFXML);
+    	createModule(module.brainWarmup);
     }
-
-
+    @FXML
+    void onCalculatorMenuClicked(ActionEvent event) {
+    	createModule(module.calculator);
+    }
     @FXML
     void onHelpButtonClick(ActionEvent event) {
 
-    }
-    
+    }    
     @FXML
     void onNotePadMenuItemClick(ActionEvent event) {
-    	String pathToFXML = "../FXML_Files/notePadModule.fxml";
-    	createModule(pathToFXML);
+    	createModule(module.notepad);
     }
     
     @FXML
     void setLayoutToStudyLayout(ActionEvent event) {
-
+    	createModule(module.musicPlayer,.2f,.1f);
+    	createModule(module.notepad, .5f,.1f);
     }
 
     @FXML
     void setLayoutToWorkLayout(ActionEvent event){
-    	String pathToFXML = "../FXML_Files/taskListModule.fxml";
-    	createModule(pathToFXML,.5f,.5f);
+    	createModule(module.tasklist,.5f,.5f);
+    	createModule(module.notepad, .2f,.2f);
+    	createModule(module.calculator, .7f,.7f);
     	
 
     }
 
 
-    private void createModule(String Path){
-    	FXMLLoader moduleLoader = new FXMLLoader((getClass().getResource(Path)));
+    private void createModule(module m){ //Passes in a module enum, and then converts it to the correct path from the modulePaths array. Very streamlined. Very Sexy
+    	FXMLLoader moduleLoader = new FXMLLoader((getClass().getResource(modulePaths[m.ordinal()])));
     	Node miniModule = null;
     	baseModuleInitalizer miniModuleController = null;
 		try {
@@ -107,15 +125,11 @@ public class ProductivityPlusController implements Initializable {
 				System.out.println("Succesfully loaded " + miniModuleController.getBaseController().getTitleMenu().getText() );
 			}			
 		}
-
-
-    	
-    	//return miniModuleController.baseVBox;
     }
     //Overloaded method to allow creation of modules at specfic percentage across the x and y of the main workspace
     //For example values of .5 and .5 would place the module in the center of the mainworkspace
-    private void createModule(String Path, double percentageOfScreenWidth, double perctanageOfScreenHeight){
-    	FXMLLoader moduleLoader = new FXMLLoader((getClass().getResource(Path)));
+    private void createModule(module m, double percentageOfScreenWidth, double perctanageOfScreenHeight){
+    	FXMLLoader moduleLoader = new FXMLLoader((getClass().getResource(modulePaths[m.ordinal()])));
     	Node miniModule = null;
     	baseModuleInitalizer miniModuleController = null;
 		try {
