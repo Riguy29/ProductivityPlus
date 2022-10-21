@@ -18,7 +18,7 @@ public class baseModuleInitalizer implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		FXMLLoader moduleLoader = new  FXMLLoader(getClass().getResource("../FXML_Files/baseModule.fxml"));
 		try {
-			baseVBox = moduleLoader.load(); //Placing FXML file into a vbox
+			baseVBox = moduleLoader.load(); //Placing base module FXML file into a vbox
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

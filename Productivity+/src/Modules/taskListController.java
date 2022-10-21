@@ -60,14 +60,10 @@ public class taskListController extends baseModuleInitalizer{
     	dailyTask.getChildren().add(taskCompleteCheckBox);
     	dailyTask.getChildren().add(textField);
     	
-    	taskCompleteCheckBox.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent arg0) {
-				taskListVBox.getChildren().remove(dailyTask);
-				tasksCompleted += 1;
-				updateProgressBar();
-				
-			}    		
+    	taskCompleteCheckBox.setOnAction(Event ->{
+			taskListVBox.getChildren().remove(dailyTask);
+			tasksCompleted += 1;
+			updateProgressBar();
     	});
     	taskListVBox.getChildren().add(dailyTask);
     }
