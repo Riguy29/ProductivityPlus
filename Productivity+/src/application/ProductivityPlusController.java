@@ -89,9 +89,11 @@ public class ProductivityPlusController implements Initializable {
     }
     
     @FXML
-    void onAffirmationsMenuItemClick(ActionEvent event) { //where you'd set a default load action
-    	createModule(module.affirmation);
+    void onAffirmationsMenuItemClick(ActionEvent event) { 
+    	createModule(module.affirmation, .6f, .1f);
     }
+    
+    //insert new modules here
     
     @FXML
     void setLayoutToStudyLayout(ActionEvent event) {
