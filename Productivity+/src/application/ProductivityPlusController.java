@@ -33,6 +33,7 @@ public class ProductivityPlusController implements Initializable {
     	brainWarmup,
     	calculator,
     	notepad,
+    	affirmation,
     	
     }
     private static String[] modulePaths =
@@ -43,12 +44,14 @@ public class ProductivityPlusController implements Initializable {
     	"../FXML_Files/musicPlayerModule.fxml",
     	"../FXML_Files/brainWarmupModule.fxml",
     	"../FXML_Files/calculatorModule.fxml",
-    	"../FXML_Files/notePadModule.fxml"  	
+    	"../FXML_Files/notePadModule.fxml",
+    	"../FXML_Files/affirmationModule.fxml" 
     };
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) { //Runs this code block when the fxml loads
 		createModule(module.about); //Creates the about module to tell users about our app
+		createModule(module.affirmation, .7f, .2f);
 		
 	}
     @FXML
@@ -81,8 +84,13 @@ public class ProductivityPlusController implements Initializable {
 
     }    
     @FXML
-    void onNotePadMenuItemClick(ActionEvent event) {
+    void onNotePadMenuItemClick(ActionEvent event) { //where you'd set a default load action
     	createModule(module.notepad);
+    }
+    
+    @FXML
+    void onAffirmationsMenuItemClick(ActionEvent event) { //where you'd set a default load action
+    	createModule(module.affirmation);
     }
     
     @FXML
