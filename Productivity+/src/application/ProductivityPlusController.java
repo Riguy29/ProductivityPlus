@@ -1,20 +1,21 @@
 package application;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 import Modules.*;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.layout.*;
 
-public class ProductivityPlusController implements Initializable {
+public class ProductivityPlusController {
     
 	DraggableMaker draggableMaker = new DraggableMaker();
     @FXML
@@ -48,9 +49,21 @@ public class ProductivityPlusController implements Initializable {
     	"../FXML_Files/affirmationModule.fxml" 
     };
     
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) { //Runs this code block when the fxml loads
-		createModule(module.about); //Creates the about module to tell users about our app
+
+	public void initialize() throws IOException { //Runs this code block when the fxml loads
+		Properties  prop = ConfigReader.readConfig();
+		//System.out.println(prop.getProperty("showAboutOnLauch"));
+		Boolean showAbout = Boolean.valueOf(prop.getProperty("showAboutOnLaunch"));
+		
+		if(showAbout == false) {//If property is false don't show module
+			System.out.println("Not showing about module, as per config");
+		}
+		else { //If true, shows module		
+			createModule(module.about); //Creates the about module to tell users about our app
+		}
+		
+
+		
 		createModule(module.affirmation, .7f, .2f);
 		
 	}
@@ -160,7 +173,7 @@ public class ProductivityPlusController implements Initializable {
 		}
 		finally {
 			if(miniModule == null) {
-				System.err.print("FXML module could not find controller\n Make sure controller path in the FXML file is formatted like this\n Modules.NAMEOFCONTROLLERCLASS");
+				System.err.println("FXML module could not find controller\n Make sure controller path in the FXML file is formatted like this\n Modules.NAMEOFCONTROLLERCLASS");
 			}
 			else {
 				System.out.println("Succesfully loaded " + miniModuleController.getBaseController().getTitleMenu().getText() );

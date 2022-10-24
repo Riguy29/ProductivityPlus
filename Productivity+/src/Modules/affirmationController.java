@@ -1,5 +1,6 @@
 package Modules;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -48,8 +49,8 @@ public class affirmationController extends baseModuleInitalizer {
 
     
     @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		super.initialize(arg0, arg1);
+	public void initialize() throws IOException {
+		super.initialize();
 		baseController.setTitle("Affirmations");
 		
 		dateTextField.setText(DFormat.format(date));

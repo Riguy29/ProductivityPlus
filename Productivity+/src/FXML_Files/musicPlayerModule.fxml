@@ -24,8 +24,7 @@
       </HBox>
       <HBox alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#onPlayMusicButton" text="Play" />
-            <Button mnemonicParsing="false" onAction="#onPauseMusicButton" text="Pause" />
+            <Button fx:id="playPauseButton" mnemonicParsing="false" onAction="#onPlayMusicButton" text="Play" />
             <Button mnemonicParsing="false" onAction="#onStopMusicButton" text="Stop" />
          </children>
       </HBox>

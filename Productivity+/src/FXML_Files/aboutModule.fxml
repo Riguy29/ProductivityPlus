@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -19,5 +20,6 @@
       <Label layoutX="358.0" layoutY="145.0" text="Riley Arneson - Lead Programmer, Project Manager" />
       <Label layoutX="206.0" layoutY="166.0" text="Avery Diederich - Programmer, UX Designer" />
       <Label layoutX="257.0" layoutY="187.0" text="Maddie Jones - Programmer, Business Analyst" />
+      <CheckBox fx:id="showAboutCheckBox" mnemonicParsing="false" onAction="#dontShowAgainClicked" text="Don't show on startup" />
    </children>
 </VBox>
