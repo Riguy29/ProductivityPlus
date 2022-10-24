@@ -35,6 +35,7 @@ public class ProductivityPlusController {
     	calculator,
     	notepad,
     	affirmation,
+    	stopwatch
     	
     }
     private static String[] modulePaths =
@@ -46,7 +47,10 @@ public class ProductivityPlusController {
     	"../FXML_Files/brainWarmupModule.fxml",
     	"../FXML_Files/calculatorModule.fxml",
     	"../FXML_Files/notePadModule.fxml",
-    	"../FXML_Files/affirmationModule.fxml" 
+    	"../FXML_Files/affirmationModule.fxml",
+    	"../FXML_Files/stopwatchModule.fxml" 
+    	
+    	
     };
     
 
@@ -104,6 +108,11 @@ public class ProductivityPlusController {
     @FXML
     void onAffirmationsMenuItemClick(ActionEvent event) { 
     	createModule(module.affirmation, .6f, .1f);
+    }
+    
+    @FXML
+    void onStopwatchMenuItemClick(ActionEvent event) { 
+    	createModule(module.stopwatch);
     }
     
     //insert new modules here
