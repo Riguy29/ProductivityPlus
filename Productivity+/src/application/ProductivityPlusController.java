@@ -34,6 +34,7 @@ public class ProductivityPlusController implements Initializable {
     	calculator,
     	notepad,
     	affirmation,
+    	stopwatch
     	
     }
     private static String[] modulePaths =
@@ -45,7 +46,10 @@ public class ProductivityPlusController implements Initializable {
     	"../FXML_Files/brainWarmupModule.fxml",
     	"../FXML_Files/calculatorModule.fxml",
     	"../FXML_Files/notePadModule.fxml",
-    	"../FXML_Files/affirmationModule.fxml" 
+    	"../FXML_Files/affirmationModule.fxml",
+    	"../FXML_Files/stopwatchModule.fxml" 
+    	
+    	
     };
     
 	@Override
@@ -91,6 +95,11 @@ public class ProductivityPlusController implements Initializable {
     @FXML
     void onAffirmationsMenuItemClick(ActionEvent event) { 
     	createModule(module.affirmation, .6f, .1f);
+    }
+    
+    @FXML
+    void onStopwatchMenuItemClick(ActionEvent event) { 
+    	createModule(module.stopwatch);
     }
     
     //insert new modules here
