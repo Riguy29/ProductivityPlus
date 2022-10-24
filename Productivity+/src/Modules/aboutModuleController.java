@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.prefs.InvalidPreferencesFormatException;
 
 import application.ConfigReader;
 import javafx.event.ActionEvent;
@@ -30,12 +31,12 @@ public class aboutModuleController extends baseModuleInitalizer {
     @FXML
     private CheckBox showAboutCheckBox;
     @FXML
-    void dontShowAgainClicked(ActionEvent event) throws IOException {
+    void dontShowAgainClicked(ActionEvent event) throws IOException, InvalidPreferencesFormatException {
     	
 		Properties  prop = ConfigReader.readConfig(); 
 		Boolean showAbout = Boolean.valueOf(prop.getProperty(loadedProperty));
     	showAbout = !showAbout; //Sets the boolean to be the opposite of whatever it was, so if it was false it will be true 
-    	//prop.setProperty("showAboutOnLaunch", Boolean.toString(showAbout)); //Saves value to config
+    	//System.out.printf("%s %s", loadedProperty, Boolean.toString(showAbout));
     	ConfigReader.changeValue(loadedProperty, Boolean.toString(showAbout));
     }
     

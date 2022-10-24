@@ -1,10 +1,12 @@
 package application;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
+import java.util.prefs.InvalidPreferencesFormatException;
+import java.util.prefs.Preferences;
 
 public class ConfigReader {
 	private static Properties config;
@@ -23,13 +25,22 @@ public class ConfigReader {
  
         return prop;
     }
-    public static void changeValue(String propertyName, String value) throws IOException {
+    public static void changeValue(String propertyName, String value) throws IOException, InvalidPreferencesFormatException {
     	FileOutputStream out = new FileOutputStream(fileName);
     	FileInputStream in = new FileInputStream(fileName);
         Properties config = new Properties();
+        
         config.load(in);
+        
+//        config.setProperty("showAboutOnLaunch", config.getProperty("showAboutOnLaunch"));
+//        config.setProperty("theme", config.getProperty("theme"));
         config.setProperty(propertyName, value);
+        
         config.store(out, null);
-        out.close();	
+        out.close();
+        
+    }
+    private void setAllProperties() {
+    	
     }
 }
