@@ -1,5 +1,6 @@
 package Modules;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -104,8 +105,8 @@ public class notePadModuleController extends baseModuleInitalizer{
 
 
     @Override
-	public void initialize(URL arg0, ResourceBundle arg1)  {
-    	super.initialize(arg0, arg1); //Must include this when you initialize you modules
+	public void initialize() throws IOException  {
+    	super.initialize(); //Must include this when you initialize you modules
 		baseController.setTitle("Note Pad");	
  	
 	}

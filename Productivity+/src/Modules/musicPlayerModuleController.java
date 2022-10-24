@@ -1,11 +1,13 @@
 package Modules;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
@@ -17,6 +19,7 @@ public class musicPlayerModuleController extends baseModuleInitalizer{
 
 	final static Media[] playLists = new Media[2];
 	final static String[] titlesOfPlaylists = {"Meditation","Study"};
+	private boolean isPlaying = false;
 	
 	MediaPlayer mediaPlayer;
 	
@@ -29,10 +32,13 @@ public class musicPlayerModuleController extends baseModuleInitalizer{
 
     @FXML
     private VBox parentVBox;
+    
+    @FXML
+    private Button playPauseButton;
 	
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		super.initialize(arg0, arg1);
+	public void initialize() throws IOException {
+		super.initialize();
 		baseController.setTitle("Music Player");
 		
 		//Loading mp3 files into the media array
@@ -41,7 +47,6 @@ public class musicPlayerModuleController extends baseModuleInitalizer{
 		
 		mediaPlayer = new MediaPlayer(playLists[playListIndex]);
 		setPlaylistTitle(titlesOfPlaylists[playListIndex]);
-		mediaPlayer.setAutoPlay(true);
 		
 	}
 
@@ -54,17 +59,25 @@ public class musicPlayerModuleController extends baseModuleInitalizer{
     	}
     	setPlaylistTitle(titlesOfPlaylists[playListIndex]);
     	mediaPlayer = new MediaPlayer(playLists[playListIndex]);
-    	mediaPlayer.play();
+    	
+    	if(isPlaying == true) {
+    		mediaPlayer.play();
+    	}
     }
-
-    @FXML
-    void onPauseMusicButton(ActionEvent event) {
-    	mediaPlayer.pause();
-    }
-
     @FXML
     void onPlayMusicButton(ActionEvent event) {
-    	mediaPlayer.play();
+    	if(isPlaying == true) { //If the music already playing clicking the button will pause it
+    		mediaPlayer.pause();
+    		playPauseButton.setText("Play");
+    		System.out.print("TEST");
+    		
+    	}
+    	else { //If music is not playing the button will play it
+    		mediaPlayer.play();
+    		playPauseButton.setText("Pause");
+    	}
+    	isPlaying = !isPlaying; //Sets the boolean to the opposite of its value
+    	
     }
 
     @FXML
@@ -76,12 +89,14 @@ public class musicPlayerModuleController extends baseModuleInitalizer{
     	}
     	setPlaylistTitle(titlesOfPlaylists[playListIndex]);
     	mediaPlayer = new MediaPlayer(playLists[playListIndex]);
-    	mediaPlayer.play();
+    	//mediaPlayer.play();
     }
 
     @FXML
     void onStopMusicButton(ActionEvent event) {
     	mediaPlayer.stop();
+    	playPauseButton.setText("Play");
+    	isPlaying = false;
     }
     private void setPlaylistTitle(String title) {
     	titleOfCurrPlayList.setText(title);
