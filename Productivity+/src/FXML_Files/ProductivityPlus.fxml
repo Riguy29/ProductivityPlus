@@ -20,7 +20,7 @@
                   </Menu>
                </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Gizmos">
+        <Menu mnemonicParsing="false" text="Modules">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#onDailyTaskListMenuButtonClick" text="DailyTaskList" />
                   <MenuItem mnemonicParsing="false" onAction="#onStopwatchMenuItemClick" text="Stopwatch" />

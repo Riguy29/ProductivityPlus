@@ -55,20 +55,20 @@ public class ProductivityPlusController {
     
 
 	public void initialize() throws IOException { //Runs this code block when the fxml loads
-		Properties  prop = ConfigReader.readConfig();
-		//System.out.println(prop.getProperty("showAboutOnLauch"));
-		Boolean showAbout = Boolean.valueOf(prop.getProperty("showAboutOnLaunch"));
+		Properties  prop = ConfigReader.readConfig(); 
+		Boolean showAbout = Boolean.valueOf(prop.getProperty("showAboutOnLaunch")); //Retrieving boolean value from config file
 		
+		createModule(module.affirmation, .7f, .2f);
 		if(showAbout == false) {//If property is false don't show module
 			System.out.println("Not showing about module, as per config");
 		}
 		else { //If true, shows module		
-			createModule(module.about,.45,.45); //Creates the about module to tell users about our app
+			createModule(module.about,.5f,.5f); //Creates the about module to tell users about our app
 		}
 		
 
 		
-		createModule(module.affirmation, .7f, .2f);
+		
 		
 	}
     @FXML
@@ -119,12 +119,14 @@ public class ProductivityPlusController {
     
     @FXML
     void setLayoutToStudyLayout(ActionEvent event) {
+    	mainWorkspace.getChildren().clear();
     	createModule(module.musicPlayer,.2f,.1f);
     	createModule(module.notepad, .5f,.1f);
     }
 
     @FXML
     void setLayoutToWorkLayout(ActionEvent event){
+    	mainWorkspace.getChildren().clear();
     	createModule(module.tasklist,.5f,.5f);
     	createModule(module.notepad, .2f,.2f);
     	createModule(module.calculator, .7f,.7f);
@@ -158,7 +160,7 @@ public class ProductivityPlusController {
 			}			
 		}
     }
-    //Overloaded method to allow creation of modules at specfic percentage across the x and y of the main workspace
+    //Overloaded method to allow creation of modules at specific percentage across the x and y of the main workspace
     //For example values of .5 and .5 would place the module in the center of the mainworkspace
     private void createModule(module m, double percentageOfScreenWidth, double perctanageOfScreenHeight){
     	FXMLLoader moduleLoader = new FXMLLoader((getClass().getResource(modulePaths[m.ordinal()])));
@@ -167,7 +169,7 @@ public class ProductivityPlusController {
 		try {
 			miniModule = moduleLoader.load();
 			miniModuleController = (baseModuleInitalizer)moduleLoader.getController();
-	    	miniModuleController.baseVBox.getChildren().add(miniModule); //Addes miniModule to the baseVBox from its parent
+	    	miniModuleController.baseVBox.getChildren().add(miniModule); //Adds miniModule to the baseVBox from its parent
 	    	mainWorkspace.getChildren().add(miniModuleController.baseVBox); //Adds the baseVBox(with the mini module) to the mainWorkspace;
 	    	
 
