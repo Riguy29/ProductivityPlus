@@ -60,12 +60,12 @@ public class taskListController extends baseModuleInitalizer{
     	dailyTask.getChildren().add(taskCompleteCheckBox);
     	dailyTask.getChildren().add(textField);
     	
-    	taskCompleteCheckBox.setOnAction(Event ->{
+    	taskCompleteCheckBox.setOnAction(Event ->{ //When the check box is checked, removes task from list
 			taskListVBox.getChildren().remove(dailyTask);
 			tasksCompleted += 1;
 			updateProgressBar();
     	});
-    	taskListVBox.getChildren().add(dailyTask);
+    	taskListVBox.getChildren().add(dailyTask); //Adds new task to list
     }
 
     @FXML
@@ -80,7 +80,8 @@ public class taskListController extends baseModuleInitalizer{
     	}
 
     }
-    public void updateProgressBar() {
+    
+    public void updateProgressBar() { //Update progress bar to show correct percentage
     	double percentageComplete = ((double)tasksCompleted/taskGoalNum);
     	System.out.print(percentageComplete);
     	taskProgressBar.setProgress(percentageComplete);

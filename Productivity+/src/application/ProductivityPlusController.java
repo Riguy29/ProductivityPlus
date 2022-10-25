@@ -1,17 +1,11 @@
 package application;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Properties;
-import java.util.ResourceBundle;
-
-import Modules.*;
+import Modules.*; 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.*;
 
@@ -142,8 +136,8 @@ public class ProductivityPlusController {
 		try {
 			miniModule = moduleLoader.load();
 			miniModuleController  = (baseModuleInitalizer)moduleLoader.getController();
-	    	miniModuleController.baseVBox.getChildren().add(miniModule); //Adds miniModule to the baseVBox from its parent
-	    	mainWorkspace.getChildren().add(miniModuleController.baseVBox); //Adds the baseVBox(with the mini module) to the mainWorkspace;
+	    	miniModuleController.getBaseVBox().getChildren().add(miniModule); //Adds miniModule to the baseVBox from its parent
+	    	mainWorkspace.getChildren().add(miniModuleController.getBaseVBox()); //Adds the baseVBox(with the mini module) to the mainWorkspace;
 		} 
 		catch (IOException e) {
 			System.err.print("Java yelled at me if I didnt put this in..No clue what it does");
@@ -169,12 +163,12 @@ public class ProductivityPlusController {
 		try {
 			miniModule = moduleLoader.load();
 			miniModuleController = (baseModuleInitalizer)moduleLoader.getController();
-	    	miniModuleController.baseVBox.getChildren().add(miniModule); //Adds miniModule to the baseVBox from its parent
-	    	mainWorkspace.getChildren().add(miniModuleController.baseVBox); //Adds the baseVBox(with the mini module) to the mainWorkspace;
+	    	miniModuleController.getBaseVBox().getChildren().add(miniModule); //Adds miniModule to the baseVBox from its parent
+	    	mainWorkspace.getChildren().add(miniModuleController.getBaseVBox()); //Adds the baseVBox(with the mini module) to the mainWorkspace;
 	    	
 
 	    	//TODO: Eventually try to center the module because right now the it spawns the module from its top left corner so things look offset
-	    	miniModuleController.baseVBox.relocate( (mainWorkspace.getWidth() * percentageOfScreenWidth) ,mainWorkspace.getHeight() * perctanageOfScreenHeight);  
+	    	miniModuleController.getBaseVBox().relocate( (mainWorkspace.getWidth() * percentageOfScreenWidth) ,mainWorkspace.getHeight() * perctanageOfScreenHeight);  
 		} 
 		catch (IOException e) {
 			System.err.println("Java yelled at me if I didnt put this in..No clue what it does");

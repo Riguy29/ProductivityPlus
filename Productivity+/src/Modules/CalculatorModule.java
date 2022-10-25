@@ -48,7 +48,8 @@ public class CalculatorModule extends baseModuleInitalizer {
     		currNum = Double.toString(prevResult);
     		prevResult = null;
     	}
-    	updateLastOperationDisplay(currNum + "+");    		
+    	//updateLastOperationDisplay(currNum + "+");    	
+    	formatNumberDisplay(currNum,"+");
     }
 
     @FXML
@@ -58,7 +59,7 @@ public class CalculatorModule extends baseModuleInitalizer {
     		currNum = Double.toString(prevResult);
     		prevResult = null;
     	}
-    	updateLastOperationDisplay(currNum + "-");
+    	formatNumberDisplay(currNum,"-");
     }
 
     @FXML
@@ -68,7 +69,7 @@ public class CalculatorModule extends baseModuleInitalizer {
     		currNum = Double.toString(prevResult);
     		prevResult = null;
     	}
-    	updateLastOperationDisplay(currNum + "*");
+    	formatNumberDisplay(currNum,"*");
     }
 
     @FXML
@@ -78,7 +79,8 @@ public class CalculatorModule extends baseModuleInitalizer {
     		currNum = Double.toString(prevResult);
     		prevResult = null;
     	}
-    	updateLastOperationDisplay(currNum + "/");
+    	//String displayFormat = String.format("%.2f", currNum);
+    	formatNumberDisplay(currNum,"/");
     }
 
     @FXML
@@ -201,6 +203,22 @@ public class CalculatorModule extends baseModuleInitalizer {
     	previousOperation.setText(newInfo);
     	prevNum = currNum;
     	currNum = "";
+    }
+    private void formatNumberDisplay(String number, String operation) {
+    	double workingNumber = Double.parseDouble(number);
+    	String displayString = "ERROR";
+    	if(workingNumber - Math.floor(workingNumber) == 0) { //If the number is whole don't print decimal places   		
+    		displayString = String.format("%.0f ", workingNumber);    		
+    	}
+    	else { //Else prints to two decimal places
+    		displayString = String.format("%.2f ", workingNumber);    
+    	}
+    	
+    	displayString += operation;
+    	updateLastOperationDisplay(displayString);
+    	
+    	
+    	
     }
 
 

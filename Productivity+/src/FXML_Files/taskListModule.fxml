@@ -14,7 +14,7 @@
       <HBox alignment="CENTER">
          <children>
             <Label text="Daily Task Goal" />
-            <TextField fx:id="taskGoalTextField" onKeyPressed="#setDailyTaskGoal" prefWidth="50.0" />
+            <TextField fx:id="taskGoalTextField" onKeyPressed="#setDailyTaskGoal" onMouseExited="#setDailyTaskGoal" prefWidth="50.0" />
          </children>
       </HBox>
       <Label text="Progess Toward Goal" />

@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 public class baseModuleInitalizer{
 
 	DraggableMaker draggableMaker = new DraggableMaker();
-	public VBox baseVBox;
+	protected VBox baseVBox;
 	protected baseModuleController baseController;
 
 	public void initialize () throws IOException {
@@ -24,6 +24,9 @@ public class baseModuleInitalizer{
 	}
 	public baseModuleController getBaseController() {
 		return baseController;
+	}
+	public VBox getBaseVBox() {
+		return baseVBox;
 	}
 
 }
