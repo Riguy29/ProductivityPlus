@@ -63,7 +63,7 @@ public class ProductivityPlusController {
 			System.out.println("Not showing about module, as per config");
 		}
 		else { //If true, shows module		
-			createModule(module.about); //Creates the about module to tell users about our app
+			createModule(module.about,.45,.45); //Creates the about module to tell users about our app
 		}
 		
 
