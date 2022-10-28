@@ -58,8 +58,7 @@ public class notePadModuleController extends baseModuleInitalizer{
   	
 
     @FXML
-    void addNewNote(ActionEvent event) throws IOException { //duplicate an empty notepad
-    	
+    void addNewNote(ActionEvent event){ //duplicate an empty notepad
     	
     }
 
@@ -70,13 +69,9 @@ public class notePadModuleController extends baseModuleInitalizer{
     	  
     }
     
-    public final void setBackground(Background value) {
-    	
-    }
-    
     @FXML
     void createList(ActionEvent event) {
-    	CheckBox newTask = new CheckBox();
+    	
 		
 		
     }
