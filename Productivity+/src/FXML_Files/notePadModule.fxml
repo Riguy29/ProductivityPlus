@@ -35,9 +35,9 @@
                         <Font name="System Italic" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="underlineButton" mnemonicParsing="false" onAction="#underlineText" text="U" underline="true" />
-                  <Button fx:id="listButton" mnemonicParsing="false" onAction="#createList" text="List" />
+                  <Button fx:id="listButton" mnemonicParsing="false" onAction="#createList" onKeyPressed="#onEnterButtonPressed" text="List" />
                   <Button fx:id="timeStamp" cancelButton="true" mnemonicParsing="false" onAction="#timeStamp" text="DT" />
+                  <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitNotePad" text="X" underline="true" />
                </children>
             </HBox>
          </children>

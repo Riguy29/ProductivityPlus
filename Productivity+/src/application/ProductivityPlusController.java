@@ -52,7 +52,7 @@ public class ProductivityPlusController {
 		Properties  prop = ConfigReader.readConfig(); 
 		Boolean showAbout = Boolean.valueOf(prop.getProperty("showAboutOnLaunch")); //Retrieving boolean value from config file
 		
-		createModule(module.affirmation, .7f, .2f);
+		//createModule(module.affirmation, .7f, .2f);
 		if(showAbout == false) {//If property is false don't show module
 			System.out.println("Not showing about module, as per config");
 		}
