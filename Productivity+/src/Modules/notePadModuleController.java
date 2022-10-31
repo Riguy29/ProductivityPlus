@@ -5,20 +5,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-
 import java.sql.Timestamp;    
 import java.util.Date;  
 import java.text.SimpleDateFormat; 
@@ -72,8 +67,6 @@ public class notePadModuleController extends baseModuleInitalizer{
     @FXML
     void createList(ActionEvent event) {
     	
-		
-		
     }
     
     @FXML
@@ -94,9 +87,7 @@ public class notePadModuleController extends baseModuleInitalizer{
     	
     }
 		
-			
-
-
+	
 	@FXML		
     void timeStamp(ActionEvent event) { //insert current time and date-- when the note was made
 		Date date = new Date();  

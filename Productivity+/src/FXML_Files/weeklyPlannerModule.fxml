@@ -8,19 +8,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Modules.weeklyPlannerController">
    <children>
       <HBox prefHeight="323.0" prefWidth="726.0">
          <children>
             <Accordion>
               <panes>
-                <TitledPane animated="false" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="330.0" prefWidth="450.0" text="Monday">
+                <TitledPane fx:id="mondayTitlePane" animated="false" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="330.0" prefWidth="450.0" text="Monday">
                      <padding>
                         <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
                      <content>
-                        <TextArea maxWidth="-Infinity" prefWidth="120.0">
+                        <TextArea fx:id="mondayTextArea" maxWidth="-Infinity" prefWidth="120.0">
                            <padding>
                               <Insets top="4.0" />
                            </padding>
@@ -31,12 +30,12 @@
             </Accordion>
             <Accordion>
               <panes>
-                <TitledPane animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Tuesday">
+                <TitledPane fx:id="tuesdayTitlePane" animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Tuesday">
                      <padding>
                         <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
                      <content>
-                        <TextArea maxWidth="200.0" prefWidth="200.0">
+                        <TextArea fx:id="tuesdayTextArea" maxWidth="200.0" prefWidth="200.0">
                            <padding>
                               <Insets top="4.0" />
                            </padding>
@@ -47,12 +46,12 @@
             </Accordion>
             <Accordion>
               <panes>
-                <TitledPane animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Wednesday">
+                <TitledPane fx:id="wednesTitlePane" animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Wednesday">
                      <padding>
                         <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
                      <content>
-                        <TextArea maxWidth="200.0" prefWidth="200.0">
+                        <TextArea fx:id="wednesTextArea" maxWidth="200.0" prefWidth="200.0">
                            <padding>
                               <Insets top="4.0" />
                            </padding>
@@ -63,12 +62,12 @@
             </Accordion>
             <Accordion>
               <panes>
-                <TitledPane animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Thursday">
+                <TitledPane fx:id="thursTitlePane" animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Thursday">
                      <padding>
                         <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
                      <content>
-                        <TextArea maxWidth="200.0" prefWidth="200.0">
+                        <TextArea fx:id="thursTextArea" maxWidth="200.0" prefWidth="200.0">
                            <padding>
                               <Insets top="4.0" />
                            </padding>
@@ -79,12 +78,12 @@
             </Accordion>
             <Accordion>
               <panes>
-                <TitledPane animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Friday">
+                <TitledPane fx:id="fridayTitlePane" animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Friday">
                      <padding>
                         <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
                      <content>
-                        <TextArea maxWidth="200.0" prefWidth="200.0">
+                        <TextArea fx:id="fridayTextArea" maxWidth="200.0" prefWidth="200.0">
                            <padding>
                               <Insets top="4.0" />
                            </padding>
