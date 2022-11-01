@@ -21,7 +21,7 @@ import javafx.scene.text.Text;
 import java.sql.Timestamp;    
 import java.util.Date;  
 import java.text.SimpleDateFormat; 
-
+import application.baseModuleInitalizer;
 public class notePadModuleController extends baseModuleInitalizer{
 	
 	//creating text object

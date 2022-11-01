@@ -7,7 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
+import application.baseModuleInitalizer;
 public class stopwatchModuleController extends baseModuleInitalizer{
 	
 	static long begin = 0;

@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import java.util.prefs.InvalidPreferencesFormatException;
 
 import application.ConfigReader;
+import application.baseModuleInitalizer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;

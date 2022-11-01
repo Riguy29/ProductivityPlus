@@ -14,7 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
+import application.baseModuleInitalizer;
 public class musicPlayerModuleController extends baseModuleInitalizer{
 
 	final static Media[] playLists = new Media[2];

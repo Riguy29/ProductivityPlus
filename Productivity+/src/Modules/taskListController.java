@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
+import application.baseModuleInitalizer;
 public class taskListController extends baseModuleInitalizer{
 	
 	private int taskGoalNum = 1;
