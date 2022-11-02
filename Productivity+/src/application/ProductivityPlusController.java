@@ -29,7 +29,8 @@ public class ProductivityPlusController {
     	calculator,
     	notepad,
     	affirmation,
-    	stopwatch
+    	stopwatch,
+    	weeklyPlanner
     	
     }
     private static String[] modulePaths =
@@ -42,8 +43,8 @@ public class ProductivityPlusController {
     	"../FXML_Files/calculatorModule.fxml",
     	"../FXML_Files/notePadModule.fxml",
     	"../FXML_Files/affirmationModule.fxml",
-    	"../FXML_Files/stopwatchModule.fxml" 
-    	
+    	"../FXML_Files/stopwatchModule.fxml", 
+    	"../FXML_Files/weeklyPlannerModule.fxml" 
     	
     };
     
@@ -52,7 +53,7 @@ public class ProductivityPlusController {
 		Properties  prop = ConfigReader.readConfig(); 
 		Boolean showAbout = Boolean.valueOf(prop.getProperty("showAboutOnLaunch")); //Retrieving boolean value from config file
 		
-		createModule(module.affirmation, .7f, .2f);
+		//createModule(module.affirmation, .7f, .2f);
 		if(showAbout == false) {//If property is false don't show module
 			System.out.println("Not showing about module, as per config");
 		}
@@ -109,6 +110,11 @@ public class ProductivityPlusController {
     	createModule(module.stopwatch);
     }
     
+    @FXML
+    void onWeeklyPlannerMenuItemClick(ActionEvent event) { 
+    	createModule(module.weeklyPlanner);
+    }
+    
     //insert new modules here
     
     @FXML
@@ -141,6 +147,7 @@ public class ProductivityPlusController {
 		} 
 		catch (IOException e) {
 			System.err.print("Java yelled at me if I didnt put this in..No clue what it does");
+			e.getStackTrace();
 		}
 		catch(IllegalStateException e) {
 			System.err.println("File could not be found, make sure file path is correct");
