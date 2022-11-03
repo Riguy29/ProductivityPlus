@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="loadingScreen" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.startUpScreenController">
+   <children>
+      <Label fx:id="greetingsLabel" opacity="0.0" text="Welcome To">
+         <font>
+            <Font name="Constantia" size="40.0" />
+         </font>
+      </Label>
+      <Label fx:id="titleLabel" opacity="0.0" text="Productivity Plus">
+         <font>
+            <Font name="Constantia" size="52.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameLabel" opacity="0.0" text="NAME">
+         <font>
+            <Font name="Constantia" size="40.0" />
+         </font>
+      </Label>
+      <ProgressBar fx:id="loadingBar" prefWidth="400.0" progress="0.0" />
+   </children>
+</VBox>

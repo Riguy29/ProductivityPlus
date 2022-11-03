@@ -1,16 +1,27 @@
 package application;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
-import Modules.*; 
+import Modules.*;
+import javafx.animation.FadeTransition;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.*;
+import javafx.util.Duration;
 
 public class ProductivityPlusController {
     
+	private List<Parent> styleableNodes = new ArrayList<Parent>();
 	DraggableMaker draggableMaker = new DraggableMaker();
     @FXML
     private  AnchorPane mainWorkspace;
@@ -47,9 +58,23 @@ public class ProductivityPlusController {
     	"../FXML_Files/weeklyPlannerModule.fxml" 
     	
     };
+    @FXML
+    private ToggleGroup themeGroup;
+    @FXML
+    private RadioMenuItem SunsetThemeButton;
+
+    @FXML
+    private RadioMenuItem DeepOceanTheme;
     
+    @FXML
+    private RadioMenuItem midnightThemeButton;
+    @FXML
+    private Label welcomeLabel;
 
 	public void initialize() throws IOException { //Runs this code block when the fxml loads
+		
+		midnightThemeButton.setUserData("MidnightSkyTheme.css");
+		SunsetThemeButton.setUserData("SunsetTheme.css");
 		Properties  prop = ConfigReader.readConfig(); 
 		Boolean showAbout = Boolean.valueOf(prop.getProperty("showAboutOnLaunch")); //Retrieving boolean value from config file
 		
@@ -60,10 +85,7 @@ public class ProductivityPlusController {
 		else { //If true, shows module		
 			createModule(module.about,.5f,.5f); //Creates the about module to tell users about our app
 		}
-		
 
-		
-		
 		
 	}
     @FXML
@@ -133,6 +155,31 @@ public class ProductivityPlusController {
     	
 
     }
+    
+    @FXML
+    void onSetNameClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onThemeRadioButtonSelected(ActionEvent event) {
+    	String pathToStyleSheet = (String) themeGroup.getSelectedToggle().getUserData();
+//    	Application.setUserAgentStylesheet(pathToStyleSheet);
+//    	Scene scene = mainWorkspace.getScene();
+//    	scene.getStylesheets().add(pathToStyleSheet);
+//    	scene.
+//    	mainWorkspace.getStylesheets().add(pathToStyleSheet);
+//    	System.out.print(mainWorkspace.getStylesheets());
+    	
+    	for(Parent Module: styleableNodes) {
+    		System.out.print(Module.getStylesheets());
+    		if(!Module.getStylesheets().isEmpty()) {
+    			Module.getStylesheets().clear();
+    		}
+    		
+    		Module.getStylesheets().add(pathToStyleSheet);
+    	}
+    }
 
 
     private void createModule(module m){ //Passes in a module enum, and then converts it to the correct path from the modulePaths array. Very streamlined. Very Sexy
@@ -144,6 +191,7 @@ public class ProductivityPlusController {
 			miniModuleController  = (baseModuleInitalizer)moduleLoader.getController();
 	    	miniModuleController.getBaseVBox().getChildren().add(miniModule); //Adds miniModule to the baseVBox from its parent
 	    	mainWorkspace.getChildren().add(miniModuleController.getBaseVBox()); //Adds the baseVBox(with the mini module) to the mainWorkspace;
+	    	styleableNodes.add((Parent)miniModuleController.getBaseVBox());
 		} 
 		catch (IOException e) {
 			System.err.print("Java yelled at me if I didnt put this in..No clue what it does");
