@@ -59,39 +59,40 @@ public class startUpScreenController {
 			fadeInTitle.play();
 		});
 		fadeInTitle.setOnFinished(e -> {
-			double loadingValue = 0f;
 			if (userName != null) {
 				fadeInName.play();
 			}
-			Timer timer = new Timer();
-			Random r = new Random();
-			
-			loadingBar.progressProperty().addListener(new ChangeListener<Number>() {
 
-				@Override
-				public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-
-					if (newValue.doubleValue() >= 1) { //When progress bar is filled, load the main screen
-						// System.out.print("Done Loading");
-						timer.cancel(); // Stops timer
-						loadMainScreen();
-					}
-
-				}
-			});
-			TimerTask task = new TimerTask() {
-
-				@Override
-				public void run() {
-					float randomLoadSpeed = r.nextInt(20 - 5) + 5; //Picking Number from 5 to 20
-					randomLoadSpeed /= 100; //Dividing by 100 to give us .XX
-					//System.out.println(randomLoadSpeed/100);
-					loadingBar.setProgress(loadingBar.getProgress() + randomLoadSpeed);
-				}
-
-			};
-			timer.schedule(task, 500, 500);
 		});
+		loadingAnimation();
+
+	}
+
+	private void loadingAnimation() {
+
+		Timer timer = new Timer();
+		Random r = new Random();
+
+		loadingBar.progressProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				if (newValue.doubleValue() >= 1) { // When progress bar is filled, load the main screen
+					// System.out.print("Done Loading");
+					timer.cancel(); // Stops timer
+					loadMainScreen();
+				}
+			}
+		});
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				float randomLoadSpeed = r.nextInt(15 - 5) + 5; // Picking Number from 5 to 20
+				randomLoadSpeed /= 100; // Dividing by 100 to give us .XX
+				// System.out.println(randomLoadSpeed/100);
+				loadingBar.setProgress(loadingBar.getProgress() + randomLoadSpeed);
+			}
+		};
+		timer.schedule(task, 500, 500);
 	}
 
 	private void loadMainScreen() {
