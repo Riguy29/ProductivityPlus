@@ -38,8 +38,8 @@ public class ConfigReader {
         Enumeration<?> propertyList = config.propertyNames();
         
         /*
-         * Loop through propety list and set each property again before changing one
-         * This is needed because the store function ovverides the entire file
+         * Loop through property list and set each property again before changing one
+         * This is needed because the store function overrides the entire file
          * This is not a great solution but its what we got 
          */
         while(propertyList.hasMoreElements()) {
