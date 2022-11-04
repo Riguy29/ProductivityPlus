@@ -1,4 +1,6 @@
 package application;
+import java.util.Properties;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,7 +18,16 @@ public class ProductivityPlus extends Application {
 //        System.out.println(pwd);
         
 		//String path = "../FXML_Files/ProductivityPlus.fxml";
-		String path = "startUpScreen.fxml";
+		Properties prop = ConfigReader.readConfig(); 
+		Boolean skipLoading = Boolean.valueOf(prop.getProperty("skipLoading"));
+		String path;
+		if(skipLoading) { //Allows us to skip loading for testing purposes
+			path = "../FXML_Files/ProductivityPlus.fxml";
+			stage.setMaximized(true);
+		}else {
+			path = "startUpScreen.fxml";
+		}
+		
 		VBox root = FXMLLoader.load(getClass().getResource(path));
 		
 		
