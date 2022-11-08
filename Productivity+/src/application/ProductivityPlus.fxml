@@ -10,37 +10,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProductivityPlusController">
+<VBox prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ProductivityPlusController">
   <children>
     <MenuBar id="menuBar" VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="Layout">
-               <items>
-                  <Menu mnemonicParsing="false" text="PresetLayouts">
-                    <items>
-                      <MenuItem mnemonicParsing="false" onAction="#setLayoutToWorkLayout" text="Work" />
-                        <MenuItem mnemonicParsing="false" onAction="#setLayoutToStudyLayout" text="Study" />
-                    </items>
-                  </Menu>
-               </items>
-        </Menu>
         <Menu mnemonicParsing="false" text="Modules">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onDailyTaskListMenuButtonClick" text="DailyTaskList" />
                   <MenuItem mnemonicParsing="false" onAction="#onStopwatchMenuItemClick" text="Stopwatch" />
-                  <MenuItem mnemonicParsing="false" onAction="#onNotePadMenuItemClick" text="Notepad" />
-                  <MenuItem mnemonicParsing="false" onAction="#onBrainBreakMenuItemClick" text="BrainBreak" />
-                  <MenuItem mnemonicParsing="false" onAction="#onMusicPlayerMenuItemClicked" text="MusicPlayer" />
-                  <MenuItem mnemonicParsing="false" onAction="#onBrainWarmupMenuItemClicked" text="Brain Warmup" />
-                  <MenuItem mnemonicParsing="false" onAction="#onCalculatorMenuClicked" text="Calculator" />
-                  <MenuItem mnemonicParsing="false" onAction="#onWeeklyPlannerMenuItemClick" text="Weekly Planner" />
-                  <MenuItem mnemonicParsing="false" onAction="#onAffirmationsMenuItemClick" text="Affirmations" />
                </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Program Info">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#onAboutButtonClick" text="About" />
-                  <MenuItem mnemonicParsing="false" onAction="#onHelpButtonClick" text="Help" />
           </items>
         </Menu>
             <Menu mnemonicParsing="false" text="Settings">

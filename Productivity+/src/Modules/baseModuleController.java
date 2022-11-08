@@ -24,6 +24,7 @@ public class baseModuleController implements Initializable{
 	
 	@FXML
 	private Node childNode;
+	
     @FXML
     private VBox rootModuleVBox;
 
