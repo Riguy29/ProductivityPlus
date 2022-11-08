@@ -88,12 +88,12 @@ public class ProductivityPlusController {
 	}
     @FXML
     void onAboutButtonClick(ActionEvent event) {
-    	createModule();
+    	createModule("../modules/about/aboutModule.fxml");
     }
     
     @FXML
     void onStopwatchMenuItemClick(ActionEvent event) { 
-    	createModule("../FXML_Files/stopwatchModule.fxml");
+    	createModule("../modules/stopwatch/stopwatchModule.fxml");
     }
     
     //insert new modules here
@@ -146,34 +146,6 @@ public class ProductivityPlusController {
     
     private void createModule(String m){ //Passes in a module enum, and then converts it to the correct path from the modulePaths array. Very streamlined. Very Sexy
     	FXMLLoader moduleLoader = new FXMLLoader((getClass().getResource(m)));
-    	Node miniModule = null;
-    	baseModuleInitalizer miniModuleController = null;
-		try {
-			miniModule = moduleLoader.load();
-			miniModuleController  = (baseModuleInitalizer)moduleLoader.getController();
-	    	miniModuleController.getBaseVBox().getChildren().add(miniModule); //Adds miniModule to the baseVBox from its parent
-	    	mainWorkspace.getChildren().add(miniModuleController.getBaseVBox()); //Adds the baseVBox(with the mini module) to the mainWorkspace;
-	    	styleableNodes.add((Parent)miniModuleController.getBaseVBox());
-		} 
-		catch (IOException e) {
-			System.err.print("Java yelled at me if I didnt put this in..No clue what it does");
-			e.getStackTrace();
-		}
-		catch(IllegalStateException e) {
-			System.err.println("File could not be found, make sure file path is correct");
-		}
-		finally {
-			if(miniModule == null) {
-				System.err.print("FXML module could not find controller\n Make sure controller path in the FXML file is formatted like this\n Modules.NAMEOFCONTROLLERCLASS");
-			}
-			else {
-				System.out.println("Succesfully loaded " + miniModuleController.getBaseController().getTitleMenu().getText() );
-			}			
-		}
-    }
-    
-    private void createModule(){ //Passes in a module enum, and then converts it to the correct path from the modulePaths array. Very streamlined. Very Sexy
-    	FXMLLoader moduleLoader = new FXMLLoader((getClass().getResource(modulepath)));
     	Node miniModule = null;
     	baseModuleInitalizer miniModuleController = null;
 		try {
