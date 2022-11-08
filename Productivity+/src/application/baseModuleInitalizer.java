@@ -1,10 +1,9 @@
-package Modules;
+package application;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.DraggableMaker;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
@@ -16,7 +15,7 @@ public class baseModuleInitalizer{
 	protected baseModuleController baseController;
 
 	public void initialize () throws IOException {
-		FXMLLoader moduleLoader = new  FXMLLoader(getClass().getResource("../FXML_Files/baseModule.fxml"));
+		FXMLLoader moduleLoader = new  FXMLLoader(getClass().getResource("../../application/baseModule.fxml"));
 		baseVBox = moduleLoader.load(); //Placing base module FXML file into a vbox
 
 		draggableMaker.makeDraggable(baseVBox); //Making the base module draggable

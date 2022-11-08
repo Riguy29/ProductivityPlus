@@ -1,4 +1,4 @@
-package Modules;
+package application;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -88,7 +88,7 @@ public class baseModuleController implements Initializable{
 
     
     //Various functions that allow miniModules to change things about the base Module
-    protected void setTitle(String newTitle) { //Allows you to change the name of the menu at the top of the minimodules
+    public void setTitle(String newTitle) { //Allows you to change the name of the menu at the top of the minimodules
     	titleMenu.setText(newTitle);
     }
     protected void addNodeToMenu(MenuItem itemToAdd, Menu menuToAddToo) { //Call this function from a mini module to add a menu item to a menu

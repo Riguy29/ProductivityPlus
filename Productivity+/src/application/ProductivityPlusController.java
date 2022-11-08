@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.prefs.InvalidPreferencesFormatException;
 
-import Modules.*;
+import modules.*;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
