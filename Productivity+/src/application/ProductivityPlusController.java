@@ -147,13 +147,12 @@ public class ProductivityPlusController {
     private void createModule(String m){ //Passes in a module enum, and then converts it to the correct path from the modulePaths array. Very streamlined. Very Sexy
     	FXMLLoader moduleLoader = new FXMLLoader((getClass().getResource(m)));
     	Node miniModule = null;
-    	baseModuleInitalizer miniModuleController = null;
 		try {
 			miniModule = moduleLoader.load();
-			miniModuleController  = (baseModuleInitalizer)moduleLoader.getController();
-	    	miniModuleController.getBaseVBox().getChildren().add(miniModule); //Adds miniModule to the baseVBox from its parent
-	    	mainWorkspace.getChildren().add(miniModuleController.getBaseVBox()); //Adds the baseVBox(with the mini module) to the mainWorkspace;
-	    	styleableNodes.add((Parent)miniModuleController.getBaseVBox());
+			VBox baseModuleVBox = FXMLLoader.load(getClass().getResource("baseModule.FXML"));
+			baseModuleVBox.getChildren().add(miniModule);
+			DraggableMaker.makeDraggable(baseModuleVBox);
+	    	mainWorkspace.getChildren().add(baseModuleVBox); //Adds the baseVBox(with the mini module) to the mainWorkspace;
 		} 
 		catch (IOException e) {
 			System.err.print("Java yelled at me if I didnt put this in..No clue what it does");
@@ -167,7 +166,7 @@ public class ProductivityPlusController {
 				System.err.print("FXML module could not find controller\n Make sure controller path in the FXML file is formatted like this\n Modules.NAMEOFCONTROLLERCLASS");
 			}
 			else {
-				System.out.println("Succesfully loaded " + miniModuleController.getBaseController().getTitleMenu().getText() );
+				System.out.println("Succesfully loaded ");
 			}			
 		}
     }
@@ -175,13 +174,11 @@ public class ProductivityPlusController {
     private void createModule(module m){ //Passes in a module enum, and then converts it to the correct path from the modulePaths array. Very streamlined. Very Sexy
     	FXMLLoader moduleLoader = new FXMLLoader((getClass().getResource(modulePaths[m.ordinal()])));
     	Node miniModule = null;
-    	baseModuleInitalizer miniModuleController = null;
 		try {
 			miniModule = moduleLoader.load();
-			miniModuleController  = (baseModuleInitalizer)moduleLoader.getController();
-	    	miniModuleController.getBaseVBox().getChildren().add(miniModule); //Adds miniModule to the baseVBox from its parent
-	    	mainWorkspace.getChildren().add(miniModuleController.getBaseVBox()); //Adds the baseVBox(with the mini module) to the mainWorkspace;
-	    	styleableNodes.add((Parent)miniModuleController.getBaseVBox());
+			VBox baseModuleVBox = FXMLLoader.load(getClass().getResource("baseModule.FXML"));
+			baseModuleVBox.getChildren().add(miniModule);
+	    	mainWorkspace.getChildren().add(baseModuleVBox); //Adds the baseVBox(with the mini module) to the mainWorkspace;
 		} 
 		catch (IOException e) {
 			System.err.print("Java yelled at me if I didnt put this in..No clue what it does");
@@ -195,7 +192,7 @@ public class ProductivityPlusController {
 				System.err.print("FXML module could not find controller\n Make sure controller path in the FXML file is formatted like this\n Modules.NAMEOFCONTROLLERCLASS");
 			}
 			else {
-				System.out.println("Succesfully loaded " + miniModuleController.getBaseController().getTitleMenu().getText() );
+				System.out.println("Succesfully loaded ");
 			}			
 		}
     }
@@ -204,16 +201,15 @@ public class ProductivityPlusController {
     private void createModule(module m, double percentageOfScreenWidth, double perctanageOfScreenHeight){
     	FXMLLoader moduleLoader = new FXMLLoader((getClass().getResource(modulePaths[m.ordinal()])));
     	Node miniModule = null;
-    	baseModuleInitalizer miniModuleController = null;
 		try {
 			miniModule = moduleLoader.load();
-			miniModuleController = (baseModuleInitalizer)moduleLoader.getController();
-	    	miniModuleController.getBaseVBox().getChildren().add(miniModule); //Adds miniModule to the baseVBox from its parent
-	    	mainWorkspace.getChildren().add(miniModuleController.getBaseVBox()); //Adds the baseVBox(with the mini module) to the mainWorkspace;
+			VBox baseModuleVBox = FXMLLoader.load(getClass().getResource("baseModule.FXML"));
+			baseModuleVBox.getChildren().add(miniModule);
+	    	mainWorkspace.getChildren().add(baseModuleVBox); //Adds the baseVBox(with the mini module) to the mainWorkspace;
 	    	
 
 	    	//TODO: Eventually try to center the module because right now the it spawns the module from its top left corner so things look offset
-	    	miniModuleController.getBaseVBox().relocate( (mainWorkspace.getWidth() * percentageOfScreenWidth) ,mainWorkspace.getHeight() * perctanageOfScreenHeight);  
+	    	baseModuleVBox.relocate( (mainWorkspace.getWidth() * percentageOfScreenWidth) ,mainWorkspace.getHeight() * perctanageOfScreenHeight);  
 		} 
 		catch (IOException e) {
 			System.err.println("Java yelled at me if I didnt put this in..No clue what it does");
@@ -226,7 +222,7 @@ public class ProductivityPlusController {
 				System.err.println("FXML module could not find controller\n Make sure controller path in the FXML file is formatted like this\n Modules.NAMEOFCONTROLLERCLASS");
 			}
 			else {
-				System.out.println("Succesfully loaded " + miniModuleController.getBaseController().getTitleMenu().getText() );
+				System.out.println("Succesfully loaded " );
 			}
 			
 		}

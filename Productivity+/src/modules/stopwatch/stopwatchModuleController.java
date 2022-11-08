@@ -3,13 +3,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.baseModuleInitalizer;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class stopwatchModuleController extends baseModuleInitalizer{
+public class stopwatchModuleController{
 	
 	static long begin = 0;
 	static long stop = 0;
@@ -48,9 +48,8 @@ public class stopwatchModuleController extends baseModuleInitalizer{
     	displayLabel.setText((stop > 0) ? String.format("%04d.%03d",s,ms): String.format("%04d.%03d",0,0));
     }
     
-    @Override
+
 	public void initialize() throws IOException {
-		super.initialize();
-		baseController.setTitle("Stopwatch");
+
 	}
 }

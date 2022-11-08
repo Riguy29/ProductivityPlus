@@ -4,10 +4,10 @@ import javafx.scene.Node;
 
 public class DraggableMaker {
 	
-	private double mouseAnchorX;
-	private double mouseAnchorY;
+	private static double mouseAnchorX;
+	private static double mouseAnchorY;
 	
-	public void makeDraggable(Node node) {
+	public static void makeDraggable(Node node) {
 		
 		node.setOnMousePressed(mouseEvent ->{
 			

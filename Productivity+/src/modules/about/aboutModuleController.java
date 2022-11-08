@@ -7,18 +7,15 @@ import java.util.ResourceBundle;
 import java.util.prefs.InvalidPreferencesFormatException;
 
 import application.ConfigReader;
-import application.baseModuleInitalizer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 
-public class aboutModuleController extends baseModuleInitalizer {
+public class aboutModuleController{
 	
 	String loadedProperty= null;
-	@Override
+
 	public void initialize() throws IOException  {
-		super.initialize();
-		baseController.setTitle("About");
 		Properties prop;
 		Boolean showAbout = false;
 		prop = ConfigReader.readConfig();
