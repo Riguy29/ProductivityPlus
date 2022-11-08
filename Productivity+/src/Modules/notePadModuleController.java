@@ -61,7 +61,7 @@ public class notePadModuleController extends baseModuleInitalizer {
 
 	@FXML
 	void addNewNote(ActionEvent event) { // duplicate an empty notepad
-
+		
 	}
 
 	@FXML
@@ -80,7 +80,7 @@ public class notePadModuleController extends baseModuleInitalizer {
 
 	@FXML
 	void createList(ActionEvent event) {
-
+		//do numbers 
 	}
 
 	@FXML
