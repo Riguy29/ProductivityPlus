@@ -33,6 +33,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#onMusicPlayerMenuItemClicked" text="MusicPlayer" />
                   <MenuItem mnemonicParsing="false" onAction="#onBrainWarmupMenuItemClicked" text="Brain Warmup" />
                   <MenuItem mnemonicParsing="false" onAction="#onCalculatorMenuClicked" text="Calculator" />
+                  <MenuItem mnemonicParsing="false" onAction="#onWeeklyPlannerMenuItemClick" text="Weekly Planner" />
                   <MenuItem mnemonicParsing="false" onAction="#onAffirmationsMenuItemClick" text="Affirmations" />
                </items>
         </Menu>

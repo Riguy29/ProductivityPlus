@@ -5,106 +5,135 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextInputControl;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-import java.sql.Timestamp;    
-import java.util.Date;  
-import java.text.SimpleDateFormat; 
+import javafx.scene.text.Text;
 
-public class notePadModuleController extends baseModuleInitalizer{
-	
-    @FXML
-    private VBox notePadVbox;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
-    @FXML
-    private Button addNoteButton;
-
-    @FXML
-    private ColorPicker colorPicker;
-
-    @FXML
-    private TextArea noteTextBox;
-    
-    @FXML
-    private Button boldButton;
-
-    @FXML
-    private Button italicButton;
-
-    @FXML
-    private Button exitButton;
-
-    @FXML
-    private Button listButton;
-    
-    @FXML
-    private Button timeStamp;
-    
-    Color c = colorPicker.getValue();
-  	String text = noteTextBox.getText();
-  	
-  	
-
-    @FXML
-    void addNewNote(ActionEvent event){ //duplicate an empty notepad
-    	
-    }
-
-    @FXML
-    void changePadColor(ActionEvent event) { //change the background color of each note
-//    	  colorPicker.setOnAction((EventHandler<ActionEvent>) event); 
-//    		 c = (Color) colorPicker.getUserData();
-    	  
-    }
-    
-    @FXML
-    void createList(ActionEvent event) {
-    	
-    }
-    
-    @FXML
-    void italicizeText(ActionEvent event) { //italicize selected text
-    	noteTextBox.setFont(Font.font( "verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
-    	
-    }
-  
+public class notePadModuleController extends baseModuleInitalizer {
 
 	@FXML
-    void exitNotePad(ActionEvent event) { //exit notepad/delete
-			//noteTextBox.getChildren().clear();
-    }
-	
+	private VBox notePadVbox;
+
 	@FXML
-    void boldText(ActionEvent event) { //bold selected text				
-    	noteTextBox.setFont(Font.font( "verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
-    	
-    }
+	private Button addNoteButton;
+
+	@FXML
+	private ColorPicker colorPicker;
+
+	@FXML
+	private TextArea noteTextBox;
+
+	@FXML
+	private Button boldButton;
+
+	@FXML
+	private Button italicButton;
+
+	@FXML
+	private Button exitButton;
+
+	@FXML
+	private Button listButton;
+
+	@FXML
+	private Button timeStamp;
+
+	ColorPicker c = new ColorPicker();
+	Text text = new Text();
+	boolean fontFlagI = false;
+	boolean fontFlagB = false;
+
+	@FXML
+	void addNewNote(ActionEvent event) { // duplicate an empty notepad
 		
-	
-	@FXML		
-    void timeStamp(ActionEvent event) { //insert current time and date-- when the note was made
-		Date date = new Date();  
-	     Timestamp ts = new Timestamp(date.getTime());  
-	     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
-	       System.out.println(formatter.format(ts));
-	       noteTextBox.setText(formatter.format(ts) + (noteTextBox.getText()));
-	       
 	}
 
+	@FXML
+	void changePadColor(ActionEvent event) { // change the background color of each note
+		colorPicker.setOnAction(new EventHandler() {
+			public void handle(Event t) {
+				Color c = colorPicker.getValue();
+				System.out.println("New Color's RGB = " + c.getRed() + " " + c.getGreen() + " " + c.getBlue());
+				notePadVbox.setBackground(new Background(new BackgroundFill(c, null, null)));
+				noteTextBox.setBackground(new Background(new BackgroundFill(c, null, null)));
 
-    @Override
-	public void initialize() throws IOException  {
-    	super.initialize(); //Must include this when you initialize you modules
-		baseController.setTitle("Note Pad");	
- 	
+			}
+		});
+
 	}
-    
+
+	@FXML
+	void createList(ActionEvent event) {
+		//do numbers 
+	}
+
+	@FXML
+	void italicizeText(ActionEvent event) { // italicize selected text
+		// noteTextBox.setFont(Font.font( "verdana", FontWeight.NORMAL,
+		// FontPosture.ITALIC, 12));
+		if (fontFlagI == false) {
+			noteTextBox.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
+
+			fontFlagI = true;
+		} else {
+			noteTextBox.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 12));
+			fontFlagI = false;
+		}
+	}
+
+	@FXML
+	void exitNotePad(ActionEvent event) { // exit notepad/delete
+
+	}
+
+	@FXML
+	void boldText(ActionEvent event) { // bold selected text
+		// noteTextBox.setFont(Font.font( "verdana", FontWeight.BOLD,
+		// FontPosture.REGULAR, 12));
+
+		if (fontFlagB == false) {
+			noteTextBox.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
+
+			fontFlagB = true;
+		} else {
+			noteTextBox.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 12));
+			fontFlagB = false;
+		}
+	}
+
+	@FXML
+	void timeStamp(ActionEvent event) { // insert current time and date-- when the note was made
+		Date date = new Date();
+		Timestamp ts = new Timestamp(date.getTime());
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		System.out.println(formatter.format(ts));
+		noteTextBox.setText(formatter.format(ts) + (noteTextBox.getText()));
+
+	}
+
+	// public ColorPicker (Color color) {}
+
+	@Override
+	public void initialize() throws IOException {
+		super.initialize(); // Must include this when you initialize you modules
+		baseController.setTitle("Note Pad");
+
+	}
 
 }
