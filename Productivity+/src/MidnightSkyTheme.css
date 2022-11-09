@@ -1,11 +1,28 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
 .baseModuleStyle{
-	-fx-fill: yellow;
 	-fx-border-width: 5px;
 	-fx-border-color: black;
-	-fx-background-color: white; 
+	-fx-background-color: black; 
 }
 #mainWorkspace{
+	-fx-background-image: url("midnightSkyBackground.jpg");
+	-fx-background-size: cover;
+}
+.menuItem{
+	-fx-color: white;
+}
+.menuBar{
+	-fx-background-color: black;
+}
+.button{
+	-fx-background-color: black;
+}
+.baseModuleStyle .label{
+	-fx-text-fill: white;
+}
+.menu-bar{
+	-fx-background-color: linear-gradient(to bottom, derive(white,50%), derive(black,-30%));
+}
+.menu-item{
 	-fx-background-color: black;
 }

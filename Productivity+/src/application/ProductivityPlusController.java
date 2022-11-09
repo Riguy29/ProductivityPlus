@@ -193,21 +193,20 @@ public class ProductivityPlusController {
     @FXML
     void onThemeRadioButtonSelected(ActionEvent event) {
     	String pathToStyleSheet = (String) themeGroup.getSelectedToggle().getUserData();
-//    	Application.setUserAgentStylesheet(pathToStyleSheet);
-//    	Scene scene = mainWorkspace.getScene();
-//    	scene.getStylesheets().add(pathToStyleSheet);
-//    	scene.
-//    	mainWorkspace.getStylesheets().add(pathToStyleSheet);
-//    	System.out.print(mainWorkspace.getStylesheets());
+    	Application.setUserAgentStylesheet(pathToStyleSheet);
+    	Scene scene = mainWorkspace.getScene();
+    	Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
+    	scene.getStylesheets().add(pathToStyleSheet);
+    	System.out.print(scene.getStylesheets());
     	
-    	for(Parent Module: styleableNodes) {
-    		System.out.print(Module.getStylesheets());
-    		if(!Module.getStylesheets().isEmpty()) {
-    			Module.getStylesheets().clear();
-    		}
-    		
-    		Module.getStylesheets().add(pathToStyleSheet);
-    	}
+//    	for(Parent Module: styleableNodes) {
+//    		System.out.print(Module.getStylesheets());
+//    		if(!Module.getStylesheets().isEmpty()) {
+//    			Module.getStylesheets().clear();
+//    		}
+//    		
+//    		Module.getStylesheets().add(pathToStyleSheet);
+//    	}
     }
 
 
