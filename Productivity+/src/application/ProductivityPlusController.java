@@ -65,8 +65,16 @@ public class ProductivityPlusController {
     	"../FXML_Files/weeklyPlannerModule.fxml" 
     	
     };
+
+    @FXML
+    private RadioMenuItem modernaThemeButton;
+
     @FXML
     private ToggleGroup themeGroup;
+
+    @FXML
+    private RadioMenuItem caspianThemeButton;
+
     @FXML
     private RadioMenuItem SunsetThemeButton;
 
@@ -81,11 +89,17 @@ public class ProductivityPlusController {
 
 	public void initialize() throws IOException { //Runs this code block when the fxml loads
 		
+		modernaThemeButton.setUserData("modena.css");
+		caspianThemeButton.setUserData("caspian.css");
 		midnightThemeButton.setUserData("MidnightSkyTheme.css");
 		SunsetThemeButton.setUserData("SunsetTheme.css");
 		prop = ConfigReader.readConfig(); 
 		Boolean showAbout = Boolean.valueOf(prop.getProperty("showAboutOnLaunch")); //Retrieving boolean value from config file
 		
+		String userTheme = prop.getProperty("theme");
+		if(userTheme != null) {
+			
+		}
 		//createModule(module.affirmation, .7f, .2f);
 		if(showAbout == false) {//If property is false don't show module
 			System.out.println("Not showing about module, as per config");
@@ -193,20 +207,10 @@ public class ProductivityPlusController {
     @FXML
     void onThemeRadioButtonSelected(ActionEvent event) {
     	String pathToStyleSheet = (String) themeGroup.getSelectedToggle().getUserData();
-    	Application.setUserAgentStylesheet(pathToStyleSheet);
     	Scene scene = mainWorkspace.getScene();
-    	Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
+    	scene.getStylesheets().clear();
     	scene.getStylesheets().add(pathToStyleSheet);
-    	System.out.print(scene.getStylesheets());
-    	
-//    	for(Parent Module: styleableNodes) {
-//    		System.out.print(Module.getStylesheets());
-//    		if(!Module.getStylesheets().isEmpty()) {
-//    			Module.getStylesheets().clear();
-//    		}
-//    		
-//    		Module.getStylesheets().add(pathToStyleSheet);
-//    	}
+    	prop.setProperty("theme", pathToStyleSheet);
     }
 
 
