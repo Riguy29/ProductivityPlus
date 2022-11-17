@@ -16,12 +16,12 @@
          <children>
             <Accordion>
               <panes>
-                <TitledPane fx:id="mondayTitlePane" animated="false" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="330.0" prefWidth="450.0" text="Monday" wrapText="true">
+                <TitledPane animated="false" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="330.0" prefWidth="450.0" text="Monday" wrapText="true">
                      <padding>
                         <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
                      <content>
-                        <TextArea fx:id="mondayTextArea" maxWidth="-Infinity" prefWidth="120.0" wrapText="true">
+                        <TextArea maxWidth="-Infinity" prefWidth="120.0" wrapText="true">
                            <padding>
                               <Insets top="4.0" />
                            </padding>
@@ -32,12 +32,12 @@
             </Accordion>
             <Accordion>
               <panes>
-                <TitledPane fx:id="tuesdayTitlePane" animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Tuesday" wrapText="true">
+                <TitledPane animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Tuesday" wrapText="true">
                      <padding>
                         <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
                      <content>
-                        <TextArea fx:id="tuesdayTextArea" maxWidth="200.0" prefWidth="200.0" wrapText="true">
+                        <TextArea maxWidth="200.0" prefWidth="200.0" wrapText="true">
                            <padding>
                               <Insets top="4.0" />
                            </padding>
@@ -48,12 +48,12 @@
             </Accordion>
             <Accordion>
               <panes>
-                <TitledPane fx:id="wednesTitlePane" animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Wednesday" wrapText="true">
+                <TitledPane animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Wednesday" wrapText="true">
                      <padding>
                         <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
                      <content>
-                        <TextArea fx:id="wednesTextArea" maxWidth="200.0" prefWidth="200.0" wrapText="true">
+                        <TextArea maxWidth="200.0" prefWidth="200.0" wrapText="true">
                            <padding>
                               <Insets top="4.0" />
                            </padding>
@@ -64,12 +64,12 @@
             </Accordion>
             <Accordion>
               <panes>
-                <TitledPane fx:id="thursTitlePane" animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Thursday" wrapText="true">
+                <TitledPane animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Thursday" wrapText="true">
                      <padding>
                         <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
                      <content>
-                        <TextArea fx:id="thursTextArea" maxWidth="200.0" prefWidth="200.0" wrapText="true">
+                        <TextArea maxWidth="200.0" prefWidth="200.0" wrapText="true">
                            <padding>
                               <Insets top="4.0" />
                            </padding>
@@ -80,12 +80,12 @@
             </Accordion>
             <Accordion>
               <panes>
-                <TitledPane fx:id="fridayTitlePane" animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Friday" wrapText="true">
+                <TitledPane animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Friday" wrapText="true">
                      <padding>
                         <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
                      <content>
-                        <TextArea fx:id="fridayTextArea" maxWidth="200.0" prefWidth="200.0" wrapText="true">
+                        <TextArea maxWidth="200.0" prefWidth="200.0" wrapText="true">
                            <padding>
                               <Insets top="4.0" />
                            </padding>
