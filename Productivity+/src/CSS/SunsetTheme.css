@@ -1,0 +1,43 @@
+
+.baseModuleStyle{
+	-fx-border-width: 5px;
+	-fx-border-color: CC8424;
+	-fx-background-color: yellow; 
+}
+#mainWorkspace{
+	-fx-background-image: url("/Resources/sunsetBackground.jpg");
+	-fx-background-size: cover;
+}
+.menuBar{
+	-fx-background-color: black;
+}
+.button{
+	-fx-background-color: CC8424;
+	-fx-text-fill:black;
+}
+.button:armed{
+	-fx-background-color: ED8E01;
+}
+.button:hover{
+	-fx-background-color: ED8E01;
+}
+.menu-bar .label{
+	-fx-text-fill: black;
+}
+.menu-bar .menu:hover{
+	-fx-background-color: ED8E01;
+}
+.menu-bar{
+	-fx-background-color: linear-gradient(to bottom, derive(white,50%), derive(yellow,-30%));
+}
+.menu-item{
+	-fx-background-color: CC8424;
+}
+.menu-item:focused{
+	-fx-background-color: ED8E01;
+
+}
+.label{
+	-fx-text-fill: black;
+}
+

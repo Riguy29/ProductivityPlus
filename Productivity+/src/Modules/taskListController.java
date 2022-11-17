@@ -15,6 +15,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -38,16 +39,7 @@ public class taskListController extends baseModuleInitalizer{
 	public void initialize() throws IOException  {
     	super.initialize(); //Must include this when you initalize you modules
 		baseController.setTitle("Task List");	
-    	MenuItem resetCompletedTasks = new MenuItem("Reset Completed Tasks");
-    	resetCompletedTasks.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event) {
-				tasksCompleted =0;
-				updateProgressBar();
-				
-			}   		
-    	});
-    	baseController.addNodeToMenu(resetCompletedTasks,baseController.getTitleMenu());
+
 		
 	}
     @FXML
@@ -69,7 +61,7 @@ public class taskListController extends baseModuleInitalizer{
     }
 
     @FXML
-    void setDailyTaskGoal(KeyEvent event) {
+    void setDailyTaskGoal(MouseEvent event) {
     	try {
     		taskGoalNum = Integer.parseInt(taskGoalTextField.getText());
     		updateProgressBar();
@@ -80,10 +72,13 @@ public class taskListController extends baseModuleInitalizer{
     	}
 
     }
-    
+    @FXML
+    void onResetGoalButtonClicked(ActionEvent event) {
+		tasksCompleted =0;
+		updateProgressBar();
+    }
     public void updateProgressBar() { //Update progress bar to show correct percentage
     	double percentageComplete = ((double)tasksCompleted/taskGoalNum);
-    	System.out.print(percentageComplete);
     	taskProgressBar.setProgress(percentageComplete);
     }
 

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="rootModuleVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="baseModuleStyle" stylesheets="@../productivityPlusStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Modules.baseModuleController">
+<VBox fx:id="rootModuleVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="baseModuleStyle" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Modules.baseModuleController">
    <children>
       <MenuBar nodeOrientation="LEFT_TO_RIGHT">
         <menus>
@@ -15,6 +15,7 @@
               <MenuItem fx:id="closeModuelMenuItem" mnemonicParsing="false" onAction="#exitModule" text="Exit" />
                   <MenuItem fx:id="minimizeMenuItem" mnemonicParsing="false" onAction="#minimizeModule" text="Minimize" />
                   <MenuItem mnemonicParsing="false" onAction="#renameModule" text="Rename" />
+                  <MenuItem mnemonicParsing="false" onAction="#onBringToFrontButton" text="Bring to Front" />
             </items>
           </Menu>
         </menus>
