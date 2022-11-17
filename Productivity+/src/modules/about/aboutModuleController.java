@@ -1,9 +1,7 @@
 package modules.about;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Properties;
-import java.util.ResourceBundle;
 import java.util.prefs.InvalidPreferencesFormatException;
 
 import application.ConfigReader;

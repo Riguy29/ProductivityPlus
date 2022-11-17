@@ -14,19 +14,12 @@
   <children>
     <MenuBar id="menuBar" VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="Modules">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onStopwatchMenuItemClick" text="Stopwatch" />
-               </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Program Info">
-          <items>
-            <MenuItem mnemonicParsing="false" onAction="#onAboutButtonClick" text="About" />
-          </items>
-        </Menu>
+        <Menu fx:id="menuModules" mnemonicParsing="false" text="Modules" />
+            <Menu mnemonicParsing="false" text="Layout" />
+        <Menu mnemonicParsing="false" text="Program Info" />
             <Menu mnemonicParsing="false" text="Settings">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Import Module" />
+                  <MenuItem mnemonicParsing="false" onAction="#onImportModuleClick" text="Import Module" />
                   <Menu mnemonicParsing="false" text="Themes">
                      <items>
                         <RadioMenuItem fx:id="midnightThemeButton" mnemonicParsing="false" onAction="#onThemeRadioButtonSelected" selected="true" text="Midnight">

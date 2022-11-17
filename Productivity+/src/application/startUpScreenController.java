@@ -1,6 +1,5 @@
 package application;
 
-import java.beans.EventHandler;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Random;
@@ -11,7 +10,6 @@ import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

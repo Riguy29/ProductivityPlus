@@ -3,14 +3,11 @@ package application;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.prefs.InvalidPreferencesFormatException;
-import java.util.prefs.Preferences;
 
 public class ConfigReader {
-	private static Properties BaseConfig;
 	private final static String fileName = "config.properties";
     public static Properties readConfig() throws IOException {
 
@@ -53,9 +50,5 @@ public class ConfigReader {
         config.store(out, null);
         out.close();
         
-    }
-    private void setAllProperties() {
-
-    	
     }
 }
