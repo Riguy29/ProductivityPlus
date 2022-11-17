@@ -28,7 +28,7 @@ import javafx.util.Duration;
 
 public class ProductivityPlusController {
     
-	private List<Parent> styleableNodes = new ArrayList<Parent>();
+	private static List<Parent> styleableNodes = new ArrayList<Parent>();
 	DraggableMaker draggableMaker = new DraggableMaker();
     @FXML
     private  AnchorPane mainWorkspace;
@@ -272,10 +272,7 @@ public class ProductivityPlusController {
     	
     	//return miniModuleController.baseVBox;
     }
-
-
-
-
+    
     
 
 
