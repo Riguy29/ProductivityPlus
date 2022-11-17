@@ -85,7 +85,10 @@ public class baseModuleController implements Initializable{
     	
     }
 
-    
+    @FXML
+    void onBringToFrontButton(ActionEvent event) {
+    	rootModuleVBox.toFront();
+    }
     //Various functions that allow miniModules to change things about the base Module
     protected void setTitle(String newTitle) { //Allows you to change the name of the menu at the top of the minimodules
     	titleMenu.setText(newTitle);

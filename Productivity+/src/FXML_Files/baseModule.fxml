@@ -15,6 +15,7 @@
               <MenuItem fx:id="closeModuelMenuItem" mnemonicParsing="false" onAction="#exitModule" text="Exit" />
                   <MenuItem fx:id="minimizeMenuItem" mnemonicParsing="false" onAction="#minimizeModule" text="Minimize" />
                   <MenuItem mnemonicParsing="false" onAction="#renameModule" text="Rename" />
+                  <MenuItem mnemonicParsing="false" onAction="#onBringToFrontButton" text="Bring to Front" />
             </items>
           </Menu>
         </menus>
