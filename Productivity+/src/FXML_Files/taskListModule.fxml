@@ -10,11 +10,12 @@
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Modules.taskListController">
    <children>
       <Button mnemonicParsing="false" onAction="#createNewTaskButton" text="Add Task" />
+      <Button mnemonicParsing="false" onAction="#onResetGoalButtonClicked" text="Reset Goal" />
       <VBox fx:id="taskListVBox" />
       <HBox alignment="CENTER">
          <children>
             <Label text="Daily Task Goal" />
-            <TextField fx:id="taskGoalTextField" onKeyPressed="#setDailyTaskGoal" onMouseExited="#setDailyTaskGoal" prefWidth="50.0" />
+            <TextField fx:id="taskGoalTextField" onMouseExited="#setDailyTaskGoal" prefWidth="50.0" />
          </children>
       </HBox>
       <Label text="Progess Toward Goal" />
