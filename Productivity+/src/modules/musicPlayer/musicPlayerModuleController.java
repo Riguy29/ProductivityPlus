@@ -39,8 +39,8 @@ public class musicPlayerModuleController {
 	public void initialize() throws IOException {
 		
 		//Loading mp3 files into the media array
-		playLists[0] = new Media(getClass().getResource("../mediaFiles/MediationPlayList.mp3").toExternalForm());
-		playLists[1] = new Media(getClass().getResource("../mediaFiles/StudyPlayList.mp3").toExternalForm());
+		playLists[0] = new Media(getClass().getResource("mediaFiles/MediationPlayList.mp3").toExternalForm());
+		playLists[1] = new Media(getClass().getResource("mediaFiles/StudyPlayList.mp3").toExternalForm());
 		
 		mediaPlayer = new MediaPlayer(playLists[playListIndex]);
 		setPlaylistTitle(titlesOfPlaylists[playListIndex]);
