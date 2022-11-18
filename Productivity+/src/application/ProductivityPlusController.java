@@ -75,7 +75,6 @@ public class ProductivityPlusController {
     
     @FXML
     void onImportModuleClick(ActionEvent event) {
-    	generateModuleMenuItemInfo();
     }
     
     @FXML
@@ -135,7 +134,8 @@ public class ProductivityPlusController {
 					path = path + name + "/" + file.getName();
 				}
 			}
-			
+			System.out.println(name);
+			System.out.println(path);
 			generateModuleMenuItems(name,path);
 		}
     }
