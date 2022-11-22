@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="rootModuleVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="baseModuleStyle" stylesheets="@../productivityPlusStyles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.baseModuleController">
+   <children>
+      <MenuBar nodeOrientation="LEFT_TO_RIGHT">
+        <menus>
+          <Menu fx:id="titleMenu" mnemonicParsing="false" text="Module Functions">
+            <items>
+              <MenuItem fx:id="closeModuelMenuItem" mnemonicParsing="false" onAction="#exitModule" text="Exit" />
+                  <MenuItem fx:id="minimizeMenuItem" mnemonicParsing="false" onAction="#minimizeModule" text="Minimize" />
+                  <MenuItem mnemonicParsing="false" onAction="#renameModule" text="Rename" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</VBox>
