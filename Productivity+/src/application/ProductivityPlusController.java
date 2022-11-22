@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.prefs.InvalidPreferencesFormatException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,6 +36,10 @@ public class ProductivityPlusController {
     private  AnchorPane mainWorkspace;
     @FXML
     private ToggleGroup themeGroup;
+    @FXML
+    private RadioMenuItem modernaThemeButton;
+    @FXML
+    private RadioMenuItem caspianThemeButton;
     @FXML
     private RadioMenuItem SunsetThemeButton;
     @FXML
@@ -77,34 +83,29 @@ public class ProductivityPlusController {
     void onImportModuleClick(ActionEvent event) {
     }
     
-    @FXML
-    void onThemeRadioButtonSelected(ActionEvent event) {
-    	String pathToStyleSheet = (String) themeGroup.getSelectedToggle().getUserData();
-//    	Application.setUserAgentStylesheet(pathToStyleSheet);
-//    	Scene scene = mainWorkspace.getScene();
-//    	scene.getStylesheets().add(pathToStyleSheet);
-//    	scene.
-//    	mainWorkspace.getStylesheets().add(pathToStyleSheet);
-//    	System.out.print(mainWorkspace.getStylesheets());
-    	
-    	for(Parent Module: styleableNodes) {
-    		System.out.print(Module.getStylesheets());
-    		if(!Module.getStylesheets().isEmpty()) {
-    			Module.getStylesheets().clear();
-    		}
-    		Module.getStylesheets().add(pathToStyleSheet);
-    	}
-    }
+	@FXML
+	void onThemeRadioButtonSelected(ActionEvent event) throws IOException, InvalidPreferencesFormatException {
+		String pathToStyleSheet = (String) themeGroup.getSelectedToggle().getUserData();
+		ConfigReader.changeValue("theme", pathToStyleSheet);
+		System.out.print(pathToStyleSheet);
+		setUserTheme(pathToStyleSheet);
+	}
     
     public void initialize() throws IOException { //Runs this code block when the fxml loads
 		
-		midnightThemeButton.setUserData("MidnightSkyTheme.css");
-		SunsetThemeButton.setUserData("SunsetTheme.css");
+		modernaThemeButton.setUserData("/css/modena.css");
+		caspianThemeButton.setUserData("/css/caspian.css");
+		midnightThemeButton.setUserData("/css/MidnightSkyTheme.css");
+		SunsetThemeButton.setUserData("/css/SunsetTheme.css");
 		prop = ConfigReader.readConfig(); 
 		Boolean showAbout = Boolean.valueOf(prop.getProperty("showAboutOnLaunch")); //Retrieving boolean value from config file
 		
 		generateModuleMenuItemInfo();
 		
+		String userTheme = prop.getProperty("theme");
+		if (userTheme != null) {
+			setUserTheme(userTheme);
+		}
 		if(showAbout == false) {//If property is false don't show module
 			System.out.println("Not showing about module, as per config");
 		}
@@ -114,6 +115,19 @@ public class ProductivityPlusController {
 
 	}
     
+	private void setUserTheme(String pathToStyleSheet) {
+		//Have to add a delay because otherwise it cant find the mainworkspace during initlization
+		Timer delay = new Timer();
+		TimerTask loadUserStyleSheet = new TimerTask() {
+			@Override
+			public void run() {
+				Scene scene = mainWorkspace.getScene();
+				scene.getStylesheets().clear();
+				scene.getStylesheets().add(pathToStyleSheet);
+			}
+		};
+		delay.schedule(loadUserStyleSheet, 300);
+	}
     private void generateModuleMenuItems(String name, String path) { //use to create a menu Item with a createModule action on start
     	
 		MenuItem menuItem = new MenuItem();

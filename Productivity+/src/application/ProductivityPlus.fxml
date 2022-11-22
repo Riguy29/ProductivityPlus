@@ -22,11 +22,13 @@
                   <MenuItem mnemonicParsing="false" onAction="#onImportModuleClick" text="Import Module" />
                   <Menu mnemonicParsing="false" text="Themes">
                      <items>
-                        <RadioMenuItem fx:id="midnightThemeButton" mnemonicParsing="false" onAction="#onThemeRadioButtonSelected" selected="true" text="Midnight">
+                        <RadioMenuItem fx:id="modernaThemeButton" mnemonicParsing="false" onAction="#onThemeRadioButtonSelected" selected="true" text="Modera(Default)">
                            <toggleGroup>
                               <ToggleGroup fx:id="themeGroup" />
                            </toggleGroup>
                         </RadioMenuItem>
+                        <RadioMenuItem fx:id="caspianThemeButton" mnemonicParsing="false" onAction="#onThemeRadioButtonSelected" text="Caspian" toggleGroup="$themeGroup" />
+                        <RadioMenuItem fx:id="midnightThemeButton" mnemonicParsing="false" onAction="#onThemeRadioButtonSelected" text="Midnight" toggleGroup="$themeGroup" />
                         <RadioMenuItem fx:id="SunsetThemeButton" mnemonicParsing="false" onAction="#onThemeRadioButtonSelected" text="Sunset" toggleGroup="$themeGroup" />
                         <RadioMenuItem fx:id="DeepOceanTheme" mnemonicParsing="false" onAction="#onThemeRadioButtonSelected" text="Deep Ocean" toggleGroup="$themeGroup" />
                      </items>
