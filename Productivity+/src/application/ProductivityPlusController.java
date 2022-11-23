@@ -43,7 +43,7 @@ public class ProductivityPlusController {
     @FXML
     private RadioMenuItem SunsetThemeButton;
     @FXML
-    private RadioMenuItem DeepOceanTheme;
+    private RadioMenuItem DeepOceanThemeButton;
     @FXML
     private RadioMenuItem midnightThemeButton;
     @FXML
@@ -93,10 +93,12 @@ public class ProductivityPlusController {
     
     public void initialize() throws IOException { //Runs this code block when the fxml loads
 		
-		modernaThemeButton.setUserData("/css/modena.css");
-		caspianThemeButton.setUserData("/css/caspian.css");
-		midnightThemeButton.setUserData("/css/MidnightSkyTheme.css");
-		SunsetThemeButton.setUserData("/css/SunsetTheme.css");
+    	String pathToCssFiles = "/css/";
+		modernaThemeButton.setUserData(pathToCssFiles +"modena.css");
+		caspianThemeButton.setUserData(pathToCssFiles +"caspian.css");
+		midnightThemeButton.setUserData(pathToCssFiles +"MidnightSkyTheme.css");
+		SunsetThemeButton.setUserData(pathToCssFiles +"SunsetTheme.css");
+		DeepOceanThemeButton.setUserData(pathToCssFiles +"DeepOceanTheme.css");
 		prop = ConfigReader.readConfig(); 
 		Boolean showAbout = Boolean.valueOf(prop.getProperty("showAboutOnLaunch")); //Retrieving boolean value from config file
 		
@@ -157,8 +159,11 @@ public class ProductivityPlusController {
     	FXMLLoader moduleLoader = new FXMLLoader((getClass().getResource(m)));
     	Node miniModule = null;
 		try {
-			miniModule = moduleLoader.load();
-			VBox baseModuleVBox = FXMLLoader.load(getClass().getResource("baseModule.FXML"));
+			miniModule = moduleLoader.load();		
+			FXMLLoader baseModuleLoader  = new FXMLLoader(getClass().getResource("baseModule.FXML"));
+			VBox baseModuleVBox =  baseModuleLoader.load();
+			baseModuleController baseController =  baseModuleLoader.getController();
+			baseController.setTitle(ConvertFilePathToTitle(m));
 			baseModuleVBox.getChildren().add(miniModule);
 			DraggableMaker.makeDraggable(baseModuleVBox);
 	    	mainWorkspace.getChildren().add(baseModuleVBox); //Adds the baseVBox(with the mini module) to the mainWorkspace;
@@ -186,9 +191,13 @@ public class ProductivityPlusController {
     	FXMLLoader moduleLoader = new FXMLLoader((getClass().getResource(m)));
     	Node miniModule = null;
 		try {
-			miniModule = moduleLoader.load();
-			VBox baseModuleVBox = FXMLLoader.load(getClass().getResource("baseModule.FXML"));
+			miniModule = moduleLoader.load();		
+			FXMLLoader baseModuleLoader  = new FXMLLoader(getClass().getResource("baseModule.FXML"));
+			VBox baseModuleVBox =  baseModuleLoader.load();
+			baseModuleController baseController =  baseModuleLoader.getController();
+			baseController.setTitle(ConvertFilePathToTitle(m));
 			baseModuleVBox.getChildren().add(miniModule);
+			DraggableMaker.makeDraggable(baseModuleVBox);
 	    	mainWorkspace.getChildren().add(baseModuleVBox); //Adds the baseVBox(with the mini module) to the mainWorkspace;
 	    	
 
@@ -210,8 +219,16 @@ public class ProductivityPlusController {
 			}
 			
 		}
+    }
+    
+    private String ConvertFilePathToTitle(String filePath) {
+    	StringBuilder title = new StringBuilder(filePath);
+    	title.delete(title.indexOf("Module.fxml"),title.length()); //Removes Module.fxml from the path
+    	title.delete(0,title.lastIndexOf("/")+1); //Deletes everything before and including the last /
+    	title.replace(0, 1, title.substring(0, 1).toUpperCase()); //Capitilizes the first letter
+    	System.out.print(title.toString());
     	
-    	//return miniModuleController.baseVBox;
+    	return title.toString();
     }
 
 
