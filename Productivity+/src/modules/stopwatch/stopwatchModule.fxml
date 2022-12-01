@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="modules.stopwatch.stopwatchModuleController">
+   <children>
+      <Label fx:id="displayLabel" alignment="TOP_CENTER" contentDisplay="TOP" text="0000.000">
+         <font>
+            <Font size="59.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" spacing="30.0">
+         <children>
+            <Button fx:id="startButton" mnemonicParsing="false" onAction="#onStart" text="Start" />
+            <Button fx:id="resetButton" mnemonicParsing="false" onAction="#onReset" text="Reset" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

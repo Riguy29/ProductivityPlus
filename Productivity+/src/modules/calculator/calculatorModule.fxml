@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="modules.calculator.CalculatorModule">
+   <children>
+      <HBox alignment="TOP_RIGHT">
+         <children>
+            <Label fx:id="previousOperation" />
+         </children>
+      </HBox>
+      <TextField fx:id="currOpTextField" alignment="CENTER_RIGHT" editable="false" focusTraversable="false" />
+      <GridPane fx:id="simpleCalculator" alignment="CENTER" vgap="2.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" onAction="#onNum0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#onNum1" text="1" />
+            <Button mnemonicParsing="false" onAction="#onNum2" text="2" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" onAction="#onNum3" text="3" GridPane.columnIndex="2" />
+            <Button mnemonicParsing="false" onAction="#onNum4" text="4" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#onNum5" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#onNum6" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#onNum7" text="7" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#onNum8" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#onNum9" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#add" text="+" GridPane.columnIndex="3" />
+            <Button mnemonicParsing="false" onAction="#subtract" text="-" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#mutiply" text="*" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#divide" text="/" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#equals" text="=" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#decimal" text="." GridPane.columnIndex="2" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <Button mnemonicParsing="false" onAction="#onClear" text="C" />
+   </children>
+</VBox>

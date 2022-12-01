@@ -22,7 +22,7 @@ public class ProductivityPlus extends Application {
 		Boolean skipLoading = Boolean.valueOf(prop.getProperty("skipLoading"));
 		String path;
 		if(skipLoading) { //Allows us to skip loading for testing purposes
-			path = "../FXML_Files/ProductivityPlus.fxml";
+			path = "./ProductivityPlus.fxml";
 			stage.setMaximized(true);
 		}else {
 			path = "startUpScreen.fxml";

@@ -1,6 +1,5 @@
 package application;
 
-import java.beans.EventHandler;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Random;
@@ -11,7 +10,6 @@ import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -36,7 +34,7 @@ public class startUpScreenController {
 	@FXML
 	private ProgressBar loadingBar;
 
-	String pathToMainScreen = "../FXML_Files/ProductivityPlus.fxml";
+	String pathToMainScreen = "./ProductivityPlus.fxml";
 
 	public void initialize() throws IOException {
 		Properties prop = ConfigReader.readConfig();
@@ -98,12 +96,11 @@ public class startUpScreenController {
 	private void loadMainScreen() {
 
 		Platform.runLater(() -> { // Switching to application thread or java yells at me
-			String path = "../FXML_Files/ProductivityPlus.fxml";
 			VBox root;
 			try {
 
 				// Shuts down current stage
-				root = FXMLLoader.load(getClass().getResource(path));
+				root = FXMLLoader.load(getClass().getResource(pathToMainScreen));
 				Stage stage = (Stage) loadingScreen.getScene().getWindow();
 				stage.close();
 
