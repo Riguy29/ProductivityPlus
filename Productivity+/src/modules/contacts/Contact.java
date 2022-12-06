@@ -9,7 +9,7 @@ public class Contact {
 	private String DOB;
 	
 	
-
+   public Contact() {this("", "", "", "","","");} 
 
 	public Contact(String pathToPicture, String name, String phoneNumber, String email, String group, String dOB) {
 		super();

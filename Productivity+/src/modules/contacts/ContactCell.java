@@ -8,12 +8,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.TextAlignment;
 
-public class ImageTextCell extends ListCell<Contact> {
+public class ContactCell extends ListCell<Contact> {
 	private HBox hbox = new HBox(8);
    private ImageView thumbImageView = new ImageView(); // initially empty
    private Label label = new Label();
    
-   public ImageTextCell() {
+   public ContactCell() {
 	      hbox.setAlignment(Pos.CENTER); // center VBox contents horizontally
 
 	      thumbImageView.setPreserveRatio(true);

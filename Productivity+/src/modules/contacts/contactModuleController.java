@@ -1,12 +1,16 @@
 package modules.contacts;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javax.imageio.ImageIO;
 import javax.xml.bind.JAXB;
 
 import javafx.beans.value.ChangeListener;
@@ -22,8 +26,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.util.Callback;
-import javafx.util.StringConverter;
 
 public class contactModuleController {
 
@@ -53,7 +57,7 @@ public class contactModuleController {
     private final ObservableList<Contact> contactsForListView = 
     	      FXCollections.observableArrayList();
     public void initialize() {
-    	sortByChoiceBox.getItems().addAll("Name","Date Of Birth","Group");
+    	sortByChoiceBox.getItems().addAll("First Name", "Last Name","Date Of Birth","Group");
         try(BufferedReader input = 
                 Files.newBufferedReader(Paths.get("clients.xml"))) {
                 // unmarshal the file's contents
@@ -74,14 +78,21 @@ public class contactModuleController {
               new ChangeListener<Contact>() {
 				@Override
 				public void changed(ObservableValue<? extends Contact> observable, Contact oldValue, Contact newValue) {
-					contactImage.setImage(new Image(newValue.getPathToPicture()));
 					contactName.setText(newValue.getName());
 					contactPhoneNumber.setText(newValue.getPhoneNumber());
 					contactEmail.setText(newValue.getEmail());
 					contactGroup.setText(newValue.getGroup());
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-					LocalDate localDate = LocalDate.parse(newValue.getDOB(), formatter);
-					contactDOB.setValue(localDate);
+					System.out.print(newValue.getPathToPicture());
+					contactImage.setImage(new Image(newValue.getPathToPicture()));
+					try {
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+						LocalDate localDate = LocalDate.parse(newValue.getDOB(), formatter);
+						contactDOB.setValue(localDate);
+					}
+					catch(Exception e) {
+						contactDOB.setValue(null);
+					}
+
 					
 				}                                   
               }
@@ -92,44 +103,76 @@ public class contactModuleController {
            new Callback<ListView<Contact>, ListCell<Contact>>() {
               @Override
               public ListCell<Contact> call(ListView<Contact> listView) {
-                 return new ImageTextCell();
+                 return new ContactCell();
               }
            }
         );   
     }
     @FXML
     void addNewContact(ActionEvent event) {
-    	contactsForListView.add(new Contact("/blankContactImage.png","Unnamed Contact",null,null,null,null));
+    	contactsForListView.add(new Contact("/modules/contacts/default.jpg","Unnamed Contact",null,null,null,null));
     }
 
     @FXML
-    void chooseNewContactImage(ActionEvent event) {
-
+    void chooseNewContactImage(ActionEvent event) throws MalformedURLException, IOException,NullPointerException{
+    	FileChooser fileChooser = new FileChooser();
+    	fileChooser.setTitle("Choose a new contact image");
+    	File imageFile = fileChooser.showOpenDialog(contactName.getScene().getWindow());
+		if(ImageIO.read(imageFile) != null) {
+			System.out.print(imageFile.toURI().toURL().toString());
+			contactImage.setImage(new Image(imageFile.toURI().toURL().toString()));
+		}
+		Contact contact = contactListView.getSelectionModel().getSelectedItem();
+		contact.setPathToPicture(imageFile.toURI().toURL().toString());
+		saveAllContactsToXML();
+    	
     }
 
     @FXML
     void deleteContact(ActionEvent event) {
-
+    	contactsForListView.remove(contactListView.getSelectionModel().selectedItemProperty().get());
+    	saveAllContactsToXML();
     }
 
     @FXML
     void saveContact(ActionEvent event) {
-    	
-    	for(Contact c:contactsForListView){
-    		try(BufferedWriter output = 
-    		         Files.newBufferedWriter(Paths.get("clients.xml"))) {
-    		         // stores the Accounts before XML serialization
-    		         Contacts contacts = new Contacts(); 
-    		         Contact savedContact = new Contact(c.getPathToPicture(),c.getName(),c.getPhoneNumber(),c.getEmail(),c.getGroup(),c.getDOB());
-    		         contacts.getContacts().add(savedContact);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+		Contact contact = contactListView.getSelectionModel().getSelectedItem();
+		contact.setName(contactName.getText());
+		try {
+			contact.setDOB(contactDOB.getValue().format(formatter).toString());			
+		}
+		catch(NullPointerException e) {
+			
+		}
+		contact.setPhoneNumber(contactPhoneNumber.getText());
+		contact.setEmail(contactEmail.getText());
 
-    		         // write AccountList's XML to output
-    		         JAXB.marshal(contacts, output); 
-    		      }
-    		      catch (IOException ioException) {
-    		         System.err.println("Error opening file. Terminating.");
-    		      } 
-    	}
+		//Updates listView
+		contactListView.setCellFactory(new Callback<ListView<Contact>, ListCell<Contact>>() {
+			@Override
+			public ListCell<Contact> call(ListView<Contact> param) {
+				return new ContactCell();
+			}
+		});
+		saveAllContactsToXML();
+    }
+    void saveAllContactsToXML() {
+    	try {
+			BufferedWriter output = Files.newBufferedWriter(Paths.get("clients.xml"));
+	    	Contacts contacts = new Contacts(); 
+	    	for(Contact c:contactsForListView){
+	            //Adds each contact to the the contacts class
+	            Contact savedContact = new Contact(c.getPathToPicture(),c.getName(),c.getPhoneNumber(),c.getEmail(),c.getGroup(),c.getDOB());
+	            contacts.getContacts().add(savedContact);	            
+	    	}
+	    	//Writes contact class out to xml file
+	    	JAXB.marshal(contacts, output); 
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 
     }
 
