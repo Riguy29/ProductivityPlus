@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXB;
@@ -54,10 +55,22 @@ public class contactModuleController {
     @FXML
     private DatePicker contactDOB;
     
-    private final ObservableList<Contact> contactsForListView = 
-    	      FXCollections.observableArrayList();
+    private final ObservableList<Contact> contactsForListView = FXCollections.observableArrayList();
     public void initialize() {
-    	sortByChoiceBox.getItems().addAll("First Name", "Last Name","Date Of Birth","Group");
+    	String[] waysToSort = {"Name","DOB","Group"};
+    	sortByChoiceBox.setItems(FXCollections.observableArrayList(waysToSort));
+    	sortByChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				ContactComparator contactCompare = new ContactComparator();
+				contactCompare.SetCompareMethod(waysToSort[newValue.intValue()]);
+				Collections.sort(contactsForListView,contactCompare);
+			}
+    		
+    	});
+    	
+    	
         try(BufferedReader input = 
                 Files.newBufferedReader(Paths.get("clients.xml"))) {
                 // unmarshal the file's contents
@@ -70,9 +83,9 @@ public class contactModuleController {
              catch (IOException ioException) {
                 System.err.println("Error opening file.");
              }
-        contactListView.setItems(contactsForListView); // bind booksListView to books
+        contactListView.setItems(contactsForListView);
 
-        // when ListView selection changes, show large cover in ImageView
+        
         contactListView.getSelectionModel().selectedItemProperty().
            addListener(
               new ChangeListener<Contact>() {
@@ -111,6 +124,10 @@ public class contactModuleController {
     @FXML
     void addNewContact(ActionEvent event) {
     	contactsForListView.add(new Contact("/modules/contacts/default.jpg","Unnamed Contact",null,null,null,null));
+    	
+    	//When a new contact is added, resorts the list
+		ContactComparator contactCompare = new ContactComparator();
+		Collections.sort(contactsForListView,contactCompare);
     }
 
     @FXML
@@ -147,6 +164,7 @@ public class contactModuleController {
 		}
 		contact.setPhoneNumber(contactPhoneNumber.getText());
 		contact.setEmail(contactEmail.getText());
+		contact.setGroup(contactGroup.getText());
 
 		//Updates listView
 		contactListView.setCellFactory(new Callback<ListView<Contact>, ListCell<Contact>>() {
