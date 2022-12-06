@@ -12,9 +12,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputControl;
+
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
@@ -30,6 +32,7 @@ import java.text.SimpleDateFormat;
 
 public class notePadModuleController {
 
+
 	@FXML private VBox notePadVbox;
 	@FXML private Button addNoteButton;
 	@FXML private ColorPicker colorPicker;
@@ -41,7 +44,35 @@ public class notePadModuleController {
 	@FXML private Button timeStamp;
 	@FXML private Button saveButton;
 
-	
+
+	@FXML
+	private VBox notePadVbox;
+
+	@FXML
+	private Button addNoteButton;
+
+	@FXML
+	private ColorPicker colorPicker;
+
+	@FXML
+	private TextArea noteTextBox;
+
+	@FXML
+	private Button boldButton;
+
+	@FXML
+	private Button italicButton;
+
+	@FXML
+	private Button exitButton;
+
+	@FXML
+	private Button listButton;
+
+	@FXML
+	private Button timeStamp;
+
+
 	ColorPicker c = new ColorPicker();
 	Text text = new Text();
 	boolean fontFlagI = false;
@@ -63,6 +94,16 @@ public class notePadModuleController {
 
 	@FXML
 	void changePadColor(ActionEvent event) { // change the background color of each note	
+
+
+	@FXML
+	void addNewNote(ActionEvent event) { // duplicate an empty notepad
+		
+	}
+
+	@FXML
+	void changePadColor(ActionEvent event) { // change the background color of each note
+
 		colorPicker.setOnAction(new EventHandler() {
 			public void handle(Event t) {
 				Color c = colorPicker.getValue();
@@ -89,6 +130,7 @@ public class notePadModuleController {
             }
         };
 });
+
 	}
 
 	@FXML
@@ -118,19 +160,32 @@ public class notePadModuleController {
 			}
 				
 //			System.out.printf("%n%nI CLICK -- BOLD " + fontFlagB + " ITALIC " + fontFlagI);
+
+		if (fontFlagI == false) {
+			noteTextBox.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
+
+			fontFlagI = true;
+		} else {
+			noteTextBox.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 12));
+			fontFlagI = false;
+		}
+
 	}
 
 	@FXML
 	void exitNotePad(ActionEvent event) { // exit notepad/delete
+
 		AnchorPane mainWorkspace = (AnchorPane) baseVBox.getParent(); //Grabs the AnchorPane
 		mainWorkspace.getChildren().remove(baseVBox);
 		System.out.println("Successfully closed Note Pad");
+
 	}
 
 	@FXML
 	void boldText(ActionEvent event) { // bold selected text
 		// noteTextBox.setFont(Font.font( "verdana", FontWeight.BOLD,
 		// FontPosture.REGULAR, 12));
+
 
 		if (fontFlagB == false && fontFlagI == false) {
 			noteTextBox.setFont(Font.font( "verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
@@ -155,6 +210,16 @@ public class notePadModuleController {
 		
 		
 //		System.out.printf("%n%nBOLD CLICK -- BOLD " + fontFlagB + " ITALIC " + fontFlagI);
+
+		if (fontFlagB == false) {
+			noteTextBox.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
+
+			fontFlagB = true;
+		} else {
+			noteTextBox.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 12));
+			fontFlagB = false;
+		}
+
 	}
 
 	@FXML
@@ -166,6 +231,7 @@ public class notePadModuleController {
 		noteTextBox.setText(formatter.format(ts) + (noteTextBox.getText()));
 
 	}
+
 
 	@FXML
     void onSaveButtonClick(ActionEvent event) {

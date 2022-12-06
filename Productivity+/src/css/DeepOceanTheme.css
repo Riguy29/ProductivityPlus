@@ -1,0 +1,43 @@
+
+.baseModuleStyle{
+	-fx-border-width: 5px;
+	-fx-border-color: blue;
+	-fx-background-color: cyan; 
+}
+#mainWorkspace{
+	-fx-background-image: url("/Resources/deepOceanImage.jpg");
+	-fx-background-size: cover;
+}
+.menuBar{
+	-fx-background-color: black;
+}
+.button{
+	-fx-background-color: #0097FF;
+	-fx-text-fill:black;
+}
+.button:armed{
+	-fx-background-color: #4DB6FF;
+}
+.button:hover{
+	-fx-background-color: #4DB6FF;
+}
+.menu-bar .label{
+	-fx-text-fill: black;
+}
+.menu-bar .menu:hover{
+	-fx-background-color: #4DB6FF;
+}
+.menu-bar{
+	-fx-background-color: linear-gradient(to bottom, derive(#0097FF,50%), derive(grey,-30%));
+}
+.menu-item{
+	-fx-background-color: #0097FF;
+}
+.menu-item:focused{
+	-fx-background-color: #4DB6FF;
+
+}
+.label{
+	-fx-text-fill: black;
+}
+

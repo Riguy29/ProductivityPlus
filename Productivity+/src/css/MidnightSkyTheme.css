@@ -1,0 +1,38 @@
+
+.baseModuleStyle{
+	-fx-border-width: 5px;
+	-fx-border-color: black;
+	-fx-background-color: black; 
+}
+#mainWorkspace{
+	-fx-background-image: url("/Resources/midnightSkyBackground.jpg");
+	-fx-background-size: cover;
+}
+.menuBar{
+	-fx-background-color: black;
+}
+.button{
+	-fx-background-color: grey;
+	-fx-text-fill:white;
+}
+.button:armed{
+	-fx-background-color: white;
+	-fx-text-fill: black;
+}
+.menu-bar .label{
+	-fx-text-fill: white;
+}
+.menu-bar{
+	-fx-background-color: linear-gradient(to bottom, derive(white,50%), derive(black,-30%));
+}
+.menu-item{
+	-fx-background-color: grey;
+}
+.menu-item:focused{
+	-fx-background-color: black;
+
+}
+.label{
+	-fx-text-fill: white;
+}
+
