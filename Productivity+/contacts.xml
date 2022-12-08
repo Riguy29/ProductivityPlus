@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contacts>
+    <contact>
+        <DOB>06/29/2001</DOB>
+        <email></email>
+        <group></group>
+        <name>Riley Arneson</name>
+        <pathToPicture>/modules/contacts/default.jpg</pathToPicture>
+        <phoneNumber></phoneNumber>
+    </contact>
+    <contact>
+        <DOB>12/14/2022</DOB>
+        <name>Avery</name>
+        <pathToPicture>/modules/contacts/default.jpg</pathToPicture>
+    </contact>
+    <contact>
+        <DOB>11/08/2022</DOB>
+        <name>Maddie Jones</name>
+        <pathToPicture>/modules/contacts/default.jpg</pathToPicture>
+    </contact>
+</contacts>

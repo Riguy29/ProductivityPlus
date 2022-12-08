@@ -27,34 +27,24 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
 public class contactModuleController {
 
-    @FXML
-    private ListView<Contact> contactListView;
-
-    @FXML
-    private ChoiceBox<String> sortByChoiceBox;
-
-    @FXML
-    private ImageView contactImage;
-
-    @FXML
-    private TextField contactName;
-
-    @FXML
-    private TextField contactPhoneNumber;
-
-    @FXML
-    private TextField contactEmail;
-
-    @FXML
-    private TextField contactGroup;
-    @FXML
-    private DatePicker contactDOB;
+    @FXML private ListView<Contact> contactListView;
+    @FXML private ChoiceBox<String> sortByChoiceBox;
+    @FXML private ImageView contactImage;
+    @FXML private GridPane contactInfoGrid;
+    @FXML private TextField contactName;
+    @FXML private TextField contactPhoneNumber;
+    @FXML private TextField contactEmail;
+    @FXML private TextField contactGroup;
+    @FXML private DatePicker contactDOB;
     
+    
+    private final String XML_FILE = "contacts.xml";
     private final ObservableList<Contact> contactsForListView = FXCollections.observableArrayList();
     public void initialize() {
     	String[] waysToSort = {"Name","DOB","Group"};
@@ -72,7 +62,7 @@ public class contactModuleController {
     	
     	
         try(BufferedReader input = 
-                Files.newBufferedReader(Paths.get("clients.xml"))) {
+                Files.newBufferedReader(Paths.get(XML_FILE))) {
                 // unmarshal the file's contents
                 Contacts contacts = JAXB.unmarshal(input, Contacts.class);
 
@@ -86,16 +76,18 @@ public class contactModuleController {
         contactListView.setItems(contactsForListView);
 
         
+        //When selecting different contacts loads their data into the FXML
         contactListView.getSelectionModel().selectedItemProperty().
            addListener(
               new ChangeListener<Contact>() {
 				@Override
 				public void changed(ObservableValue<? extends Contact> observable, Contact oldValue, Contact newValue) {
+			    	contactInfoGrid.setDisable(false); //Enables the contact layout grid when a user selects a contact
 					contactName.setText(newValue.getName());
 					contactPhoneNumber.setText(newValue.getPhoneNumber());
 					contactEmail.setText(newValue.getEmail());
 					contactGroup.setText(newValue.getGroup());
-					System.out.print(newValue.getPathToPicture());
+					//System.out.print(newValue.getPathToPicture());
 					contactImage.setImage(new Image(newValue.getPathToPicture()));
 					try {
 						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -104,9 +96,7 @@ public class contactModuleController {
 					}
 					catch(Exception e) {
 						contactDOB.setValue(null);
-					}
-
-					
+					}				
 				}                                   
               }
            );        
@@ -148,6 +138,10 @@ public class contactModuleController {
     @FXML
     void deleteContact(ActionEvent event) {
     	contactsForListView.remove(contactListView.getSelectionModel().selectedItemProperty().get());
+    	
+    	if(contactsForListView.isEmpty()) {
+    		contactInfoGrid.setDisable(true); //If there arent any contacts in the listview disable the contact layout info
+    	}
     	saveAllContactsToXML();
     }
 
@@ -176,8 +170,11 @@ public class contactModuleController {
 		saveAllContactsToXML();
     }
     void saveAllContactsToXML() {
+    	
+    	//Whenever a contact is saved via the button, overwrite the entire xml file
+    	//With all contacts in the ArrayList and the updated contact
     	try {
-			BufferedWriter output = Files.newBufferedWriter(Paths.get("clients.xml"));
+			BufferedWriter output = Files.newBufferedWriter(Paths.get(XML_FILE));
 	    	Contacts contacts = new Contacts(); 
 	    	for(Contact c:contactsForListView){
 	            //Adds each contact to the the contacts class
