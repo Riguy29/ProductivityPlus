@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListCell;
@@ -42,7 +43,10 @@ public class contactModuleController {
     @FXML private TextField contactEmail;
     @FXML private TextField contactGroup;
     @FXML private DatePicker contactDOB;
+    @FXML private Button sortOrderButton;
     
+    private ContactComparator contactCompare = new ContactComparator();
+    private boolean ascendingSortOrder = true; //Either is acs or desc sort order
     
     private final String XML_FILE = "contacts.xml";
     private final ObservableList<Contact> contactsForListView = FXCollections.observableArrayList();
@@ -50,12 +54,13 @@ public class contactModuleController {
     	String[] waysToSort = {"Name","DOB","Group"};
     	sortByChoiceBox.setItems(FXCollections.observableArrayList(waysToSort));
     	sortByChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				ContactComparator contactCompare = new ContactComparator();
+				contactListView.getSelectionModel().clearSelection(); //Clears the current selection before sorting, otherwise it causes a null pointer exception. Don't know why tho
+				contactInfoGrid.setDisable(true);
+				sortOrderButton.setDisable(false); //Sort order button disabled until user selects a sort method
 				contactCompare.SetCompareMethod(waysToSort[newValue.intValue()]);
-				Collections.sort(contactsForListView,contactCompare);
+		    	sortContacts();
 			}
     		
     	});
@@ -75,27 +80,32 @@ public class contactModuleController {
              }
         contactListView.setItems(contactsForListView);
 
-        
+
         //When selecting different contacts loads their data into the FXML
         contactListView.getSelectionModel().selectedItemProperty().
            addListener(
               new ChangeListener<Contact>() {
 				@Override
 				public void changed(ObservableValue<? extends Contact> observable, Contact oldValue, Contact newValue) {
-			    	contactInfoGrid.setDisable(false); //Enables the contact layout grid when a user selects a contact
-					contactName.setText(newValue.getName());
-					contactPhoneNumber.setText(newValue.getPhoneNumber());
-					contactEmail.setText(newValue.getEmail());
-					contactGroup.setText(newValue.getGroup());
-					//System.out.print(newValue.getPathToPicture());
-					contactImage.setImage(new Image(newValue.getPathToPicture()));
-					try {
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-						LocalDate localDate = LocalDate.parse(newValue.getDOB(), formatter);
-						contactDOB.setValue(localDate);
-					}
-					catch(Exception e) {
-						contactDOB.setValue(null);
+			    	try {
+						contactInfoGrid.setDisable(false); //Enables the contact layout grid when a user selects a contact
+						contactName.setText(newValue.getName());
+						contactPhoneNumber.setText(newValue.getPhoneNumber());
+						contactEmail.setText(newValue.getEmail());
+						contactGroup.setText(newValue.getGroup());
+						//System.out.print(newValue.getPathToPicture());
+						contactImage.setImage(new Image(newValue.getPathToPicture()));
+						try {
+							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+							LocalDate localDate = LocalDate.parse(newValue.getDOB(), formatter);
+							contactDOB.setValue(localDate);
+						}
+						catch(Exception e) {
+							//If 
+							contactDOB.setValue(null);
+						}
+					} catch (NullPointerException e) {
+						System.err.println("[Contact Module] This throws an error when you sort, no idea why");
 					}				
 				}                                   
               }
@@ -114,10 +124,7 @@ public class contactModuleController {
     @FXML
     void addNewContact(ActionEvent event) {
     	contactsForListView.add(new Contact("/modules/contacts/default.jpg","Unnamed Contact",null,null,null,null));
-    	
-    	//When a new contact is added, resorts the list
-		ContactComparator contactCompare = new ContactComparator();
-		Collections.sort(contactsForListView,contactCompare);
+    	sortContacts();
     }
 
     @FXML
@@ -154,7 +161,10 @@ public class contactModuleController {
 			contact.setDOB(contactDOB.getValue().format(formatter).toString());			
 		}
 		catch(NullPointerException e) {
-			
+			System.err.println("[Contact Module] User attempted to save contact with no date");
+		}
+		catch(IllegalArgumentException e) {
+			System.err.println("[Contact Module] User entered an invalid date");
 		}
 		contact.setPhoneNumber(contactPhoneNumber.getText());
 		contact.setEmail(contactEmail.getText());
@@ -169,7 +179,19 @@ public class contactModuleController {
 		});
 		saveAllContactsToXML();
     }
-    void saveAllContactsToXML() {
+
+    @FXML
+    void changeSortOrderButton(ActionEvent event) {
+    	ascendingSortOrder = !ascendingSortOrder; //Everytime the button is clicked it just flip flops between asc and descend
+    	if(sortOrderButton.getText().equals("v")) { //If the sort order is descending 
+    		sortOrderButton.setText("^"); 		
+    	}
+    	else { //If the sort order is ascending
+    		sortOrderButton.setText("v");
+    	}
+    	sortContacts();
+    }
+    private void saveAllContactsToXML() {
     	
     	//Whenever a contact is saved via the button, overwrite the entire xml file
     	//With all contacts in the ArrayList and the updated contact
@@ -184,11 +206,14 @@ public class contactModuleController {
 	    	//Writes contact class out to xml file
 	    	JAXB.marshal(contacts, output); 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
     }
-
+    
+    private void sortContacts() {
+		Collections.sort(contactsForListView,contactCompare);			
+		if(!ascendingSortOrder) {//If sort type is Desc then reverse list
+			Collections.reverse(contactsForListView);
+		}
+    }
 }

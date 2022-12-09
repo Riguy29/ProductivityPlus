@@ -30,6 +30,7 @@
                   <Button mnemonicParsing="false" onAction="#addNewContact" text="Add new Contact" />
                   <Label text="Sort By:" />
                   <ChoiceBox fx:id="sortByChoiceBox" prefWidth="150.0" />
+                  <Button fx:id="sortOrderButton" disable="true" mnemonicParsing="false" onAction="#changeSortOrderButton" text="v" />
                </children>
                <padding>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -69,7 +70,7 @@
                   <Button mnemonicParsing="false" onAction="#deleteContact" text="Delete Contact" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Button mnemonicParsing="false" onAction="#saveContact" text="Save Contact" GridPane.rowIndex="6" />
                   <Label text="Date of Birth" GridPane.rowIndex="2" />
-                  <DatePicker fx:id="contactDOB" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <DatePicker fx:id="contactDOB" promptText="Month/Day/Year" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </center>
