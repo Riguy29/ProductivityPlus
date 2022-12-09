@@ -55,7 +55,7 @@
                <children>
                   <ImageView fx:id="contactImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <image>
-                        <Image url="@blankContactImage.png" />
+                        <Image url="@default.jpg" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" onAction="#chooseNewContactImage" text="Choose Image" />
