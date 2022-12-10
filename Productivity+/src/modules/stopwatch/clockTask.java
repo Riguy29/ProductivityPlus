@@ -7,9 +7,7 @@ public class clockTask extends Task<String> {
 	public boolean on;
 	public boolean once;
 	public long time = 0;
-	public long antiTime = 0;
 	public long start = System.currentTimeMillis();
-	public long end = 0;
 	public long display = 0; 
 	
 	@Override
