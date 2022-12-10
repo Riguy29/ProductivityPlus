@@ -13,16 +13,12 @@ public class stopwatchModuleController{
 	private boolean running;
 	private clockTask task;
 	
-	
     @FXML
     private Label displayLabel;
-
     @FXML
     private Button resetButton;
-
     @FXML
     private Button startButton;
-    
     @FXML
     private Button stopButton;
     
@@ -49,12 +45,6 @@ public class stopwatchModuleController{
     	running = false;
     	task.on = false;
     	task.cancel();
-    	try {
-			Thread.sleep(10);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     	displayLabel.textProperty().unbind();
     	displayLabel.setText(String.format("%04d.%03d",0,0));
     }
