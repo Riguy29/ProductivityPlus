@@ -11,13 +11,27 @@ public class ContactComparator implements Comparator<Contact> {
 			return o1.getName().compareTo(o2.getName());
 		}
 		else if(compareMethod.equals("DOB")) {
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-			LocalDate o1DOB = LocalDate.parse(o1.getDOB(), formatter);
-			LocalDate o2DOB = LocalDate.parse(o2.getDOB(), formatter);
-			return o1DOB.compareTo(o2DOB);
+			try {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+				LocalDate o1DOB = LocalDate.parse(o1.getDOB(), formatter);
+				LocalDate o2DOB = LocalDate.parse(o2.getDOB(), formatter);
+				return o1DOB.compareTo(o2DOB);
+			}
+			catch(NullPointerException e) {
+				System.err.print("Attempted to compare contacts by DOB, but one or both contacts did not have a DOB");
+				return 0;
+			}
+
 		}
 		else {
-			return o1.getGroup().compareTo(o2.getGroup());
+			try {
+				return o1.getGroup().compareTo(o2.getGroup());
+			}
+			catch(NullPointerException e) {
+				System.err.print("Attempted to compare contacts by Group, but one or both contacts did not have group");
+				return 0;
+			}
+			
 		}
 		
 	}
