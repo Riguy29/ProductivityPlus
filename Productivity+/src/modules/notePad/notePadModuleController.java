@@ -61,7 +61,12 @@ public class notePadModuleController {
 
 	@FXML
 	void addNewNote(ActionEvent event) { // duplicate an empty notepad
+		VBox newPad = new VBox();
+		TextArea textA = new TextArea();
+		textA.setMaxSize(275, 200);
+		newPad.setMaxSize(275, 200);
 		
+		notePadVbox.getChildren().addAll(newPad, textA);
 	}
 
 	@FXML
@@ -87,19 +92,35 @@ public class notePadModuleController {
 	void italicizeText(ActionEvent event) { // italicize selected text
 		// noteTextBox.setFont(Font.font( "verdana", FontWeight.NORMAL,
 		// FontPosture.ITALIC, 12));
-		if (fontFlagI == false) {
-			noteTextBox.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
-
-			fontFlagI = true;
-		} else {
-			noteTextBox.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 12));
-			fontFlagI = false;
+		
+		if (fontFlagI == false && fontFlagB == false) {
+			noteTextBox.setFont(Font.font( "verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
+			fontFlagI = true;	//text started not bold not i, flip italic not b
+			fontFlagB = false;
 		}
+		else if (fontFlagI == false && fontFlagB == true) {
+			noteTextBox.setFont(Font.font( "verdana", FontWeight.BOLD, FontPosture.ITALIC, 12));
+			fontFlagI = true;	//text started bold not i, flip italic keep bold
+			fontFlagB = true;
+		}
+		else if (fontFlagI == true && fontFlagB == false) {
+			noteTextBox.setFont(Font.font( "verdana", FontWeight.NORMAL, FontPosture.REGULAR, 12));
+			fontFlagI = false;	//text started italic not b, flip italic not b
+			fontFlagB = false;
+		}
+		else if (fontFlagI == true  && fontFlagB == true) {
+			noteTextBox.setFont(Font.font( "verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
+			fontFlagI = false;	//test started bold and i, flip italic keep b
+			fontFlagB = true;
+		}
+			
+//		System.out.printf("%n%nI CLICK -- BOLD " + fontFlagB + " ITALIC " + fontFlagI);
 	}
 
 	@FXML
 	void exitNotePad(ActionEvent event) { // exit notepad/delete
-
+		noteTextBox.clear();
+		System.out.println("Successfully cleared Note Pad");
 	}
 
 	@FXML
@@ -107,14 +128,28 @@ public class notePadModuleController {
 		// noteTextBox.setFont(Font.font( "verdana", FontWeight.BOLD,
 		// FontPosture.REGULAR, 12));
 
-		if (fontFlagB == false) {
-			noteTextBox.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
-
-			fontFlagB = true;
-		} else {
-			noteTextBox.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 12));
-			fontFlagB = false;
-		}
+		 if (fontFlagB == false && fontFlagI == false) {
+				noteTextBox.setFont(Font.font( "verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
+				fontFlagB = true;	
+				fontFlagI = false;
+			}
+			else if (fontFlagB == false && fontFlagI == true) {
+				noteTextBox.setFont(Font.font( "verdana", FontWeight.BOLD, FontPosture.ITALIC, 12));
+				fontFlagB = true;	
+				fontFlagI = true;
+			}
+			else if (fontFlagB == true && fontFlagI == false) {
+				noteTextBox.setFont(Font.font( "verdana", FontWeight.NORMAL, FontPosture.REGULAR, 12));
+				fontFlagB = false;	
+				fontFlagI = false;
+			}
+			else if (fontFlagB == true && fontFlagI == true) {
+				noteTextBox.setFont(Font.font( "verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
+				fontFlagB = false;	
+				fontFlagI = true;
+			}
+			
+//			System.out.printf("%n%nBOLD CLICK -- BOLD " + fontFlagB + " ITALIC " + fontFlagI);
 	}
 
 	@FXML
@@ -123,11 +158,9 @@ public class notePadModuleController {
 		Timestamp ts = new Timestamp(date.getTime());
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		System.out.println(formatter.format(ts));
-		noteTextBox.setText(formatter.format(ts) + (noteTextBox.getText()));
+		noteTextBox.setText(formatter.format(ts) + noteTextBox.getText() + "\n\n");
 
 	}
-
-	// public ColorPicker (Color color) {}
 
 	public void initialize() throws IOException {
 	}

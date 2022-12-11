@@ -2,44 +2,23 @@ package modules.weeklyPlanner;
 
 import java.io.IOException;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.Button;
 
 public class weeklyPlannerController {
 
-	    @FXML
-	    private TitledPane mondayTitlePane;
+    @FXML
+    private Button saveButton;
 
-	    @FXML
-	    private TextArea mondayTextArea;
+    @FXML
+    void saveButtonOnAction(ActionEvent event) {
 
-	    @FXML
-	    private TitledPane tuesdayTitlePane;
+    }
 
-	    @FXML
-	    private TextArea tuesdayTextArea;
-
-	    @FXML
-	    private TitledPane wednesTitlePane;
-
-	    @FXML
-	    private TextArea wednesTextArea;
-
-	    @FXML
-	    private TitledPane thursTitlePane;
-
-	    @FXML
-	    private TextArea thursTextArea;
-
-	    @FXML
-	    private TitledPane fridayTitlePane;
-
-	    @FXML
-	    private TextArea fridayTextArea;
 
 	public void initialize() throws IOException  {
 	
-		}
+	}
 }
 
