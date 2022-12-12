@@ -5,28 +5,32 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="modules.brainBreak.brainBreakController">
    <children>
+      <Label fx:id="displayLabel" alignment="TOP_CENTER" contentDisplay="TOP" text="00:00:00">
+         <font>
+            <Font size="59.0" />
+         </font>
+      </Label>
+      <HBox>
+         <children>
+            <Label text="Work Time" />
+            <TextField fx:id="workTimeTextField" promptText="In Minutes" text="30" />
+         </children>
+      </HBox>
       <HBox>
          <children>
             <Label text="Break Time" />
-            <TextField fx:id="breakTimeTextField" onKeyPressed="#setBreakTime" promptText="In Minutes" text="5" />
+            <TextField fx:id="breakTimeTextField" promptText="In Minutes" text="5" />
          </children>
       </HBox>
-      <HBox>
-         <children>
-            <Label text="Work TIme" />
-            <TextField fx:id="workTimeTextField" onKeyPressed="#setWorkTime" promptText="In Minutes" text="30" />
-         </children>
-      </HBox>
-      <Label fx:id="timerLabel" text="Time Until Brainbreak" />
-      <Label fx:id="timer" text="4:30" />
       <HBox alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#onStartButton" text="Start" />
-            <Button layoutX="115.0" layoutY="10.0" mnemonicParsing="false" onAction="#onPauseButton" text="Pause" />
-            <Button layoutX="141.0" layoutY="10.0" mnemonicParsing="false" onAction="#onStopButton" text="Stop" />
+            <Button fx:id="startButton" mnemonicParsing="false" onAction="#onStartButton" text="Start" />
+            <Button fx:id="stopButton" layoutX="141.0" layoutY="10.0" mnemonicParsing="false" onAction="#onStopButton" text="Stop" />
+            <Button fx:id="resetButton" layoutX="115.0" layoutY="10.0" mnemonicParsing="false" onAction="#onResetButton" text="Reset" />
          </children>
       </HBox>
    </children>

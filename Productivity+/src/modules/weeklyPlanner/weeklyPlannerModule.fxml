@@ -5,25 +5,28 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="modules.weeklyPlanner.weeklyPlannerController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="modules.weeklyPlanner.weeklyPlannerController">
    <children>
-      <HBox prefHeight="323.0" prefWidth="726.0">
+      <HBox prefHeight="300.0" prefWidth="725.0">
          <children>
             <Accordion>
               <panes>
-                <TitledPane fx:id="mondayTitlePane" animated="false" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="330.0" prefWidth="450.0" text="Monday" wrapText="true">
+                <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="320.0" prefWidth="450.0" text="Monday" wrapText="true">
                      <padding>
                         <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
                      <content>
-                        <TextArea fx:id="mondayTextArea" maxWidth="-Infinity" prefWidth="120.0" wrapText="true">
+                        <TextArea maxHeight="270.0" maxWidth="130.0" wrapText="true">
                            <padding>
                               <Insets top="4.0" />
                            </padding>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
                         </TextArea>
                      </content>
                   </TitledPane>
@@ -31,15 +34,18 @@
             </Accordion>
             <Accordion>
               <panes>
-                <TitledPane fx:id="tuesdayTitlePane" animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Tuesday" wrapText="true">
+                <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="320.0" prefWidth="450.0" text="Tuesday" wrapText="true">
                      <padding>
                         <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
                      <content>
-                        <TextArea fx:id="tuesdayTextArea" maxWidth="200.0" prefWidth="200.0" wrapText="true">
+                        <TextArea maxHeight="270.0" maxWidth="130.0" wrapText="true">
                            <padding>
                               <Insets top="4.0" />
                            </padding>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
                         </TextArea>
                      </content>
                 </TitledPane>
@@ -47,15 +53,18 @@
             </Accordion>
             <Accordion>
               <panes>
-                <TitledPane fx:id="wednesTitlePane" animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Wednesday" wrapText="true">
+                <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="320.0" prefWidth="450.0" text="Wednesday" wrapText="true">
                      <padding>
                         <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
                      <content>
-                        <TextArea fx:id="wednesTextArea" maxWidth="200.0" prefWidth="200.0" wrapText="true">
+                        <TextArea maxHeight="270.0" maxWidth="130.0" wrapText="true">
                            <padding>
                               <Insets top="4.0" />
                            </padding>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
                         </TextArea>
                      </content>
                 </TitledPane>
@@ -63,15 +72,18 @@
             </Accordion>
             <Accordion>
               <panes>
-                <TitledPane fx:id="thursTitlePane" animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Thursday" wrapText="true">
+                <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="320.0" prefWidth="450.0" text="Thursday" wrapText="true">
                      <padding>
                         <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
                      <content>
-                        <TextArea fx:id="thursTextArea" maxWidth="200.0" prefWidth="200.0" wrapText="true">
+                        <TextArea maxHeight="270.0" maxWidth="130.0" wrapText="true">
                            <padding>
                               <Insets top="4.0" />
                            </padding>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
                         </TextArea>
                      </content>
                 </TitledPane>
@@ -79,52 +91,25 @@
             </Accordion>
             <Accordion>
               <panes>
-                <TitledPane fx:id="fridayTitlePane" animated="false" maxWidth="-Infinity" prefWidth="450.0" text="Friday" wrapText="true">
+                <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="320.0" prefWidth="450.0" text="Friday" wrapText="true">
                      <padding>
                         <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
                      </padding>
                      <content>
-                        <TextArea fx:id="fridayTextArea" maxWidth="200.0" prefWidth="200.0" wrapText="true">
+                        <TextArea maxHeight="270.0" maxWidth="130.0" wrapText="true">
                            <padding>
                               <Insets top="4.0" />
                            </padding>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
                         </TextArea>
                      </content>
                 </TitledPane>
               </panes>
             </Accordion>
-            <Accordion>
-              <panes>
-                <TitledPane animated="false" text="untitled 1">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <Button mnemonicParsing="false" text="Button" />
-                              <Button layoutY="25.0" mnemonicParsing="false" text="Button" />
-                           </children></AnchorPane>
-                  </content>
-                     <padding>
-                        <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
-                     </padding>
-                </TitledPane>
-                <TitledPane animated="false" text="untitled 2">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                     <padding>
-                        <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
-                     </padding>
-                </TitledPane>
-                <TitledPane animated="false" text="untitled 3">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                     <padding>
-                        <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
-                     </padding>
-                </TitledPane>
-              </panes>
-            </Accordion>
+            <Accordion />
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveButtonOnAction" prefWidth="45.0" text="Save" />
          </children>
       </HBox>
    </children>
