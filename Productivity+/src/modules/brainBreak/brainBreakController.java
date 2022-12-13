@@ -8,15 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import modules.stopwatch.clockTask;
-
 
 public class brainBreakController {
-	
-	private boolean running;
-	private boolean work = true;
-	private timerTask task;
-	
+
     @FXML
     private TextField breakTimeTextField;
 
@@ -35,10 +29,17 @@ public class brainBreakController {
     @FXML
     private TextField workTimeTextField;
 
+	private boolean running;
+
+	private timerTask task;
+
+	private boolean work;
+
     @FXML
-    void onPauseButton(ActionEvent event) {
-    	task.counting = false;
+    void onStopButton(ActionEvent event) {
+    	running = false;
     }
+
 
     @FXML
     void onStartButton(ActionEvent event) {

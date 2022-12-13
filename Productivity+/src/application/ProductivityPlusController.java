@@ -169,8 +169,9 @@ public class ProductivityPlusController {
 	    	mainWorkspace.getChildren().add(baseModuleVBox); //Adds the baseVBox(with the mini module) to the mainWorkspace;
 		} 
 		catch (IOException e) {
-			System.err.print("Java yelled at me if I didnt put this in..No clue what it does");
-			e.getStackTrace();
+			//System.err.print("Java yelled at me if I didnt put this in..No clue what it does");
+			//e.getStackTrace();
+			e.printStackTrace();
 		}
 		catch(IllegalStateException e) {
 			System.err.println("File could not be found, make sure file path is correct");

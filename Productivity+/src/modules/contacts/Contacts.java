@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlElement;
 public class Contacts {
    // @XmlElement specifies XML element name for each object in the List
    @XmlElement(name="contact") 
-   private List<Contact> contacts = new ArrayList<>(); // stores Accounts
+   private List<Contact> contacts = new ArrayList<>(); //stores contacts
 
    // returns the List<Accounts>
    public List<Contact> getContacts() {return contacts;}

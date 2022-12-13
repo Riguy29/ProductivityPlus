@@ -61,10 +61,8 @@ public class taskListController {
     	try {
     		taskGoalNum = Integer.parseInt(taskGoalTextField.getText());
     		updateProgressBar();
-    		
     	}
-    	catch(java.lang.NumberFormatException E) {
-    		
+    	catch(java.lang.NumberFormatException E) {	
     	}
 
     }
@@ -76,10 +74,6 @@ public class taskListController {
     public void updateProgressBar() { //Update progress bar to show correct percentage
     	double percentageComplete = ((double)tasksCompleted/taskGoalNum);
     	taskProgressBar.setProgress(percentageComplete);
-    }
-
-
-
-    
+    } 
 
 }
