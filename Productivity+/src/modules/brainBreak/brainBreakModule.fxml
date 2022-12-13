@@ -14,6 +14,15 @@
             <Font size="59.0" />
          </font>
       </Label>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="96.0">
+         <children>
+            <Label fx:id="stateLabel" alignment="CENTER" contentDisplay="CENTER" text="Work">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
       <HBox>
          <children>
             <Label text="Work Time" />

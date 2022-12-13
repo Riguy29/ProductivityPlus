@@ -28,37 +28,81 @@ public class brainBreakController {
 
     @FXML
     private TextField workTimeTextField;
+    
+    @FXML
+    private Label stateLabel;
 
 	private boolean running;
 
 	private timerTask task;
 
-	private boolean work;
+	public boolean work = true;
 
     @FXML
     void onStopButton(ActionEvent event) {
-    	running = false;
+    	task.counting = false;
     }
-
 
     @FXML
     void onStartButton(ActionEvent event) {
     	if (!running) {
-    		running = true;
-    		task = new timerTask((long) 100000);
-    		displayLabel.textProperty().bind(task.messageProperty());
-    		ExecutorService executorService = Executors.newFixedThreadPool(1);
-    		executorService.execute(task);
-    		executorService.shutdown();
+    		if (work) {
+    			try {
+    				createTask(Integer.parseInt(workTimeTextField.getText()));
+    				running = true;
+    			} catch (NumberFormatException e) {
+        			workTimeTextField.setText("0");
+        		}
+    		} else {
+    			try {
+    				createTask(Integer.parseInt(breakTimeTextField.getText()));
+    				running = true;
+    			} catch (NumberFormatException e) {
+        			breakTimeTextField.setText("0");
+        		}
+    		}
+    	} else {
+    		task.counting = true;
     	}
     }
 
     @FXML
     void onResetButton(ActionEvent event) {
+    	reset();
+    	work = true;
+    	stateLabel();
+    }
+    
+    public void createTask(int i) {
+    	task = new timerTask((long) i);
+		displayLabel.textProperty().bind(task.messageProperty());
+		task.setOnSucceeded((succeededEvent) -> {
+			reset();
+			if (work) {
+				work = false;
+			} else {
+				work = true;
+			}
+			stateLabel();
+		});
+		ExecutorService executorService = Executors.newFixedThreadPool(1);
+		executorService.execute(task);
+		executorService.shutdown();
+    }
+    
+    public void reset() {
     	task.counting = false;
     	task.cancel();
     	running = false;
-    	work = true;
+    	displayLabel.textProperty().unbind();
+    	displayLabel.textProperty().set("00:00");
     }
-
+    
+    public void stateLabel() {
+    	if (work) {
+    		stateLabel.setText("Work");
+    	} else {
+    		stateLabel.setText("Break");
+    	}
+    }
 }
