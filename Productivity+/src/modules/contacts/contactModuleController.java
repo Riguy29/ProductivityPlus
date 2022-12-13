@@ -49,7 +49,7 @@ public class contactModuleController {
     private boolean ascendingSortOrder = true; //Either is acs or desc sort order
     
     private final String XML_FILE = "contacts.xml";
-    private final ObservableList<Contact> contactsForListView = FXCollections.observableArrayList();
+    private ObservableList<Contact> contactsForListView = FXCollections.observableArrayList();
     public void initialize() {
     	String[] waysToSort = {"Name","DOB","Group"};
     	sortByChoiceBox.setItems(FXCollections.observableArrayList(waysToSort));
@@ -93,7 +93,6 @@ public class contactModuleController {
 						contactPhoneNumber.setText(newValue.getPhoneNumber());
 						contactEmail.setText(newValue.getEmail());
 						contactGroup.setText(newValue.getGroup());
-						//System.out.print(newValue.getPathToPicture());
 						contactImage.setImage(new Image(newValue.getPathToPicture()));
 						try {
 							DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");

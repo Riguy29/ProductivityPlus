@@ -1,17 +1,22 @@
 package modules.notePad;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
@@ -20,9 +25,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+
+import javax.xml.bind.JAXB;
+
 import java.text.SimpleDateFormat;
 
 public class notePadModuleController {
@@ -54,10 +62,99 @@ public class notePadModuleController {
 	@FXML
 	private Button timeStamp;
 
+	@FXML
+	private ChoiceBox<String> instanceChoiceBox;
+
+	private final String XML_FILE = "notePadInstances.xml";
+	private ArrayList<NotePadInstance> instancesList = new ArrayList<>();
 	ColorPicker c = new ColorPicker();
 	Text text = new Text();
 	boolean fontFlagI = false;
 	boolean fontFlagB = false;
+	NotePadInstance currentInstance;
+
+	public void initialize() throws IOException {
+		String[] instances = { "Notepad 1", "Notepad 2", "Notepad 3" };
+		instanceChoiceBox.setItems(FXCollections.observableArrayList(instances));
+
+		instanceChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				// First save all notepad data again
+				saveCurrentInstance();
+				saveAllData();
+				// Then set the new notepad using data from the new value
+				setNotepadInfo(newValue.intValue());
+			}
+		});
+
+		try (BufferedReader input = Files.newBufferedReader(Paths.get(XML_FILE))) {
+			// unmarshal the file's contents
+			NotePadInstances notePads = JAXB.unmarshal(input, NotePadInstances.class);
+
+			
+			 for (NotePadInstance notepad : notePads.getInstances()) {
+				 instancesList.add(notepad); 
+			 }
+			 
+		} catch (IOException ioException) {
+			System.err.println("Error opening file.");
+		}
+		instanceChoiceBox.setValue(instances[0]);
+
+	}
+
+	private void saveCurrentInstance() {
+		try {
+			currentInstance.setText(noteTextBox.getText());
+			currentInstance.setItalics(fontFlagI);
+			currentInstance.setBold(fontFlagB);
+			currentInstance.setrValue(colorPicker.getValue().getRed());
+			currentInstance.setbValue(colorPicker.getValue().getBlue());
+			currentInstance.setgValue(colorPicker.getValue().getGreen());
+		} catch (NullPointerException e) {
+			System.err.print("This error is triggered when the notepad first loads because we manually set the instance but not everything has loaded\nThis can be safely ignored");
+			//e.printStackTrace();
+		}
+	}
+
+	private void saveAllData() {
+		try {
+			BufferedWriter output = Files.newBufferedWriter(Paths.get(XML_FILE));
+			NotePadInstances instances = new NotePadInstances();
+			for (NotePadInstance i : instancesList) {
+				// Adds each contact to the the contacts class
+				NotePadInstance savedInstance = new NotePadInstance(i.getText(), i.isItalics(), i.isBold(),i.getrValue(),i.getgValue(),i.getbValue());
+				instances.getInstances().add(savedInstance);
+			}
+			// Writes contact class out to xml file
+			JAXB.marshal(instances, output);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void setNotepadInfo(int notepadInstance) {
+		currentInstance = instancesList.get(notepadInstance);
+		noteTextBox.setText(currentInstance.getText());
+		fontFlagI = currentInstance.isItalics();
+		fontFlagB = currentInstance.isBold();
+		Color noteColor = new Color(currentInstance.getrValue(),currentInstance.getgValue(),currentInstance.getbValue(),1);
+		notePadVbox.setBackground(new Background(new BackgroundFill(noteColor, null, null)));
+		noteTextBox.setBackground(new Background(new BackgroundFill(noteColor, null, null)));
+		colorPicker.setValue(noteColor);
+		FontPosture posture = FontPosture.REGULAR;
+		FontWeight weight = FontWeight.NORMAL;
+		if(fontFlagI) {
+			posture = FontPosture.ITALIC;
+		}
+		if(fontFlagB) {
+			weight = FontWeight.BOLD;
+		}
+		noteTextBox.setFont(Font.font("verdana", weight, posture, 12));
+
+		
+	}
 
 	@FXML
 	void addNewNote(ActionEvent event) { // duplicate an empty notepad
@@ -65,7 +162,7 @@ public class notePadModuleController {
 		TextArea textA = new TextArea();
 		textA.setMaxSize(275, 200);
 		newPad.setMaxSize(275, 200);
-		
+
 		notePadVbox.getChildren().addAll(newPad, textA);
 	}
 
@@ -85,35 +182,24 @@ public class notePadModuleController {
 
 	@FXML
 	void createList(ActionEvent event) {
-		//do numbers 
+		// do numbers
 	}
 
 	@FXML
 	void italicizeText(ActionEvent event) { // italicize selected text
-		// noteTextBox.setFont(Font.font( "verdana", FontWeight.NORMAL,
-		// FontPosture.ITALIC, 12));
+
+		FontPosture posture = FontPosture.REGULAR;
+		FontWeight weight = FontWeight.NORMAL;
 		
-		if (fontFlagI == false && fontFlagB == false) {
-			noteTextBox.setFont(Font.font( "verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
-			fontFlagI = true;	//text started not bold not i, flip italic not b
-			fontFlagB = false;
+		fontFlagI = !fontFlagI; //Flips between italic and normal
+		if(fontFlagB) {
+			weight = FontWeight.BOLD;
 		}
-		else if (fontFlagI == false && fontFlagB == true) {
-			noteTextBox.setFont(Font.font( "verdana", FontWeight.BOLD, FontPosture.ITALIC, 12));
-			fontFlagI = true;	//text started bold not i, flip italic keep bold
-			fontFlagB = true;
+		if(fontFlagI) {
+			posture = FontPosture.ITALIC;
 		}
-		else if (fontFlagI == true && fontFlagB == false) {
-			noteTextBox.setFont(Font.font( "verdana", FontWeight.NORMAL, FontPosture.REGULAR, 12));
-			fontFlagI = false;	//text started italic not b, flip italic not b
-			fontFlagB = false;
-		}
-		else if (fontFlagI == true  && fontFlagB == true) {
-			noteTextBox.setFont(Font.font( "verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
-			fontFlagI = false;	//test started bold and i, flip italic keep b
-			fontFlagB = true;
-		}
-			
+		noteTextBox.setFont(Font.font("verdana", weight, posture, 12));
+
 //		System.out.printf("%n%nI CLICK -- BOLD " + fontFlagB + " ITALIC " + fontFlagI);
 	}
 
@@ -125,30 +211,18 @@ public class notePadModuleController {
 
 	@FXML
 	void boldText(ActionEvent event) { // bold selected text
-		// noteTextBox.setFont(Font.font( "verdana", FontWeight.BOLD,
-		// FontPosture.REGULAR, 12));
+		FontPosture posture = FontPosture.REGULAR;
+		FontWeight weight = FontWeight.NORMAL;
+		
+		fontFlagB = !fontFlagB; //Flips between normal and bold
+		if(fontFlagB) {
+			weight = FontWeight.BOLD;
+		}
+		if(fontFlagI) {
+			posture = FontPosture.ITALIC;
+		}
+		noteTextBox.setFont(Font.font("verdana", weight, posture, 12));
 
-		 if (fontFlagB == false && fontFlagI == false) {
-				noteTextBox.setFont(Font.font( "verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
-				fontFlagB = true;	
-				fontFlagI = false;
-			}
-			else if (fontFlagB == false && fontFlagI == true) {
-				noteTextBox.setFont(Font.font( "verdana", FontWeight.BOLD, FontPosture.ITALIC, 12));
-				fontFlagB = true;	
-				fontFlagI = true;
-			}
-			else if (fontFlagB == true && fontFlagI == false) {
-				noteTextBox.setFont(Font.font( "verdana", FontWeight.NORMAL, FontPosture.REGULAR, 12));
-				fontFlagB = false;	
-				fontFlagI = false;
-			}
-			else if (fontFlagB == true && fontFlagI == true) {
-				noteTextBox.setFont(Font.font( "verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
-				fontFlagB = false;	
-				fontFlagI = true;
-			}
-			
 //			System.out.printf("%n%nBOLD CLICK -- BOLD " + fontFlagB + " ITALIC " + fontFlagI);
 	}
 
@@ -160,9 +234,6 @@ public class notePadModuleController {
 		System.out.println(formatter.format(ts));
 		noteTextBox.setText(formatter.format(ts) + noteTextBox.getText() + "\n\n");
 
-	}
-
-	public void initialize() throws IOException {
 	}
 
 }
