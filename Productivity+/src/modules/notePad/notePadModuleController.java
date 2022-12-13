@@ -13,7 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
@@ -55,7 +54,7 @@ public class notePadModuleController {
 	private Button italicButton;
 
 	@FXML
-	private Button exitButton;
+	private Button clearButton;
 
 	@FXML
 	private Button listButton;
@@ -159,14 +158,9 @@ public class notePadModuleController {
 
 	@FXML
 	void addNewNote(ActionEvent event) { // duplicate an empty notepad
-		//VBox newPad = new VBox();
+		VBox newPad = new VBox();
 		TextArea textA = new TextArea();
 		textA.setMaxSize(275, 200);
-		//newPad.setMaxSize(275, 200);
-		
-		notePadVbox.getChildren().addAll(textA);
-		textA.setWrapText(true);
-
 		newPad.setMaxSize(275, 200);
 
 		notePadVbox.getChildren().addAll(newPad, textA);
@@ -186,10 +180,6 @@ public class notePadModuleController {
 
 	}
 
-	@FXML
-	void createList(ActionEvent event) {
-		// do numbers
-	}
 
 	@FXML
 	void italicizeText(ActionEvent event) { // italicize selected text
@@ -210,7 +200,7 @@ public class notePadModuleController {
 	}
 
 	@FXML
-	void exitNotePad(ActionEvent event) { // exit notepad/delete
+	void clearNotePad(ActionEvent event) { // exit notepad/delete
 		noteTextBox.clear();
 		System.out.println("Successfully cleared Note Pad");
 	}
