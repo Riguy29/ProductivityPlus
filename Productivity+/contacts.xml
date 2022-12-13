@@ -1,35 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contacts>
     <contact>
-        <DOB>12/07/1994</DOB>
-        <email>ahsang@uwgb.edu</email>
-        <group>School</group>
-        <name>Golam Ahsan</name>
+        <DOB>12/21/2022</DOB>
+        <email>averydstfkgfh</email>
+        <group>loiujhglkjh</group>
+        <name>stuff</name>
         <pathToPicture>/modules/contacts/default.jpg</pathToPicture>
-        <phoneNumber>920-465-2782</phoneNumber>
-    </contact>
-    <contact>
-        <DOB>12/14/2022</DOB>
-        <email></email>
-        <group></group>
-        <name>Avery</name>
-        <pathToPicture>/modules/contacts/default.jpg</pathToPicture>
-        <phoneNumber></phoneNumber>
-    </contact>
-    <contact>
-        <DOB>11/08/2022</DOB>
-        <email></email>
-        <group></group>
-        <name>Maddie Jones</name>
-        <pathToPicture>/modules/contacts/default.jpg</pathToPicture>
-        <phoneNumber></phoneNumber>
-    </contact>
-    <contact>
-        <DOB>06/29/2001</DOB>
-        <email></email>
-        <group></group>
-        <name>Riley Arneson</name>
-        <pathToPicture>/modules/contacts/default.jpg</pathToPicture>
-        <phoneNumber></phoneNumber>
+        <phoneNumber>980798</phoneNumber>
     </contact>
 </contacts>

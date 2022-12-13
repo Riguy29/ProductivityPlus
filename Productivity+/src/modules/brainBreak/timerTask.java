@@ -9,7 +9,6 @@ public class timerTask extends Task<String> {
 	public long display = 0;
 	public boolean counting; 
 	
-	
 	public timerTask(Long time) {
 		this.time = time;
 		this.end = System.currentTimeMillis() + time;
