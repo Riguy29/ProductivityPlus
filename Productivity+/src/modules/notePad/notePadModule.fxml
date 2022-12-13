@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="notePadVbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="modules.notePad.notePadModuleController">
+<VBox fx:id="notePadVbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="modules.notePad.notePadModuleController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="289.0">
          <children>
@@ -50,4 +50,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" />
          </VBox.margin></TextArea>
    </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="2.0" />
+   </padding>
 </VBox>

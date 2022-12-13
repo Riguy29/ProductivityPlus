@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextArea;
@@ -61,12 +62,14 @@ public class notePadModuleController {
 
 	@FXML
 	void addNewNote(ActionEvent event) { // duplicate an empty notepad
-		VBox newPad = new VBox();
+		//VBox newPad = new VBox();
 		TextArea textA = new TextArea();
 		textA.setMaxSize(275, 200);
-		newPad.setMaxSize(275, 200);
+		//newPad.setMaxSize(275, 200);
 		
-		notePadVbox.getChildren().addAll(newPad, textA);
+		notePadVbox.getChildren().addAll(textA);
+		textA.setWrapText(true);
+		
 	}
 
 	@FXML
