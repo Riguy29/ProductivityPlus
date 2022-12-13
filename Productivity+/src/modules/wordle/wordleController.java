@@ -128,7 +128,7 @@ public class wordleController {
 				EndGame(2);
 			}
 		}
-		if (tries > 5) {
+		if (tries > 6) {
 			gameOver = true;
 			EndGame(1); 
 		}
