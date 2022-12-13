@@ -127,8 +127,16 @@ public class wordleController {
 				gameOver = true;
 				EndGame(2);
 			}
+			else if (colorLabel.contains("ggggg") && tries == 6) {
+				gameOver = true;
+				EndGame(2);
+			}
+			else if (!(colorLabel.contains("ggggg")) && tries == 6) {
+				gameOver = true;
+				EndGame(1);
+			}
 		}
-		if (tries > 6) {
+		if (tries > 6 ) {
 			gameOver = true;
 			EndGame(1); 
 		}
@@ -317,6 +325,10 @@ public class wordleController {
 			attemptLabel.setText("     Darn! " );
 		}
 		else if (Case == 2) { //guessed word
+			correctAnswerLabel.setText("Correct!     " + targetWord.toUpperCase());
+			attemptLabel.setText("You guessed it in " + tries);
+		}
+		else if (Case == 3) {
 			correctAnswerLabel.setText("Correct!     " + targetWord.toUpperCase());
 			attemptLabel.setText("You guessed it in " + tries);
 		}
